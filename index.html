@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Manual de Identidad Visual Ean</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Layout: página blanca de una columna, máx. 1240px; secciones separadas por filetes; contenedores con esquinas opuestas redondeadas (motivo del manual). Tema claro único, por decisión de marca. */
+:root{
+  --bg:#FFFFFF; --ink:#151617; --ink-2:#2D2E2F; --ink-3:#464748; --mute:#737374; --line:#e6e6e6; --line-2:#d0d0d1; --soft:#F2F2F2;
+  --green:#00bf68; --green-dark:#008f4e; --grey-dot:#a1a2a2;
+  --font:'Poppins', 'Open Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ease:cubic-bezier(.2,0,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none !important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{text-wrap:balance}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}
+@media (max-width:480px){.wrap{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}}
+.dot{color:var(--green)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.muted{color:var(--ink-3)}
+section.sec{border-top:1px solid var(--line)}
+section.sec>.wrap{padding-block:96px;display:flex;flex-direction:column;gap:48px}
+@media (max-width:640px){section.sec>.wrap{padding-block:64px;gap:36px}}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+.sec-head>div{display:flex;flex-direction:column;gap:12px}
+.sec-num{font-size:14px;font-weight:600;color:var(--mute)}
+.sec-head h2{margin:0;font-size:clamp(44px,6vw,80px);font-weight:800;letter-spacing:-.03em;line-height:1}
+.sec-head p{margin:0;max-width:460px;font-size:16px;line-height:1.6;color:var(--ink-3)}
+.box{border:1px solid var(--line);border-radius:40px 0 40px 0;padding:32px;display:flex;flex-direction:column;gap:24px;min-width:0;margin:0}
+.box.alt{border-radius:0 40px 0 40px}
+.box.dark{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.box h3{margin:0;font-size:26px;font-weight:700}
+.box figcaption,.box .cap{font-size:14px;line-height:1.6;color:var(--ink-3)}
+@media (max-width:480px){.box{padding:22px;border-radius:28px 0 28px 0}}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
+.stack{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{cursor:pointer;font:inherit;font-size:14px;font-weight:500;padding:10px 16px;border-radius:999px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;gap:8px;transition:background .14s var(--ease),color .14s var(--ease),border-color .14s var(--ease)}
+.pill:hover{border-color:var(--ink)}
+.pill[aria-pressed="true"],.pill[aria-selected="true"]{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.pill .chip{width:14px;height:14px;border-radius:50%;border:1px solid var(--grey-dot)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn{cursor:pointer;font:inherit;font-weight:600;font-size:15px;padding:14px 24px;border-radius:999px;text-decoration:none;border:1px solid var(--ink);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.btn.green{background:var(--green);border-color:var(--green)}
+.btn.green:hover{background:var(--green-dark);border-color:var(--green-dark);color:#FFFFFF}
+.bullets{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.5;color:var(--ink-2)}
+.bullets li{display:flex;gap:10px}
+.bullets li::before{content:"";flex:none;width:8px;height:8px;margin-top:7px;background:var(--ink);border-radius:50%}
+
+/* Hero */
+.hero{padding-block:72px 48px}
+.hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:48px;align-items:center}
+.hero h1{margin:0;font-size:clamp(44px,6.2vw,92px);line-height:.95;font-weight:800;letter-spacing:-.035em}
+.hero-art{position:relative;width:100%;max-width:100%;aspect-ratio:773/1200;overflow:hidden;touch-action:pan-y;cursor:crosshair}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-hint{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);color:var(--ink);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .4s var(--ease)}
+.hero-art.touched .hero-hint{opacity:0}
+.kicker{display:flex;align-items:center;gap:10px}
+.kicker i{width:10px;height:10px;border-radius:50%;background:var(--green);display:block}
+
+/* Índice */
+.index{margin-top:72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:16px}
+.idx{text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:28px 0 28px 0;padding:22px;display:flex;flex-direction:column;gap:18px;transition:background .22s var(--ease),border-color .22s var(--ease),transform .22s var(--ease)}
+.idx span{transition:color .22s var(--ease)}
+.idx .n{font-size:13px;color:var(--mute);font-weight:500}
+.idx .t{font-size:20px;font-weight:700}
+.idx .d{font-size:13px;color:var(--ink-3);line-height:1.5}
+.idx:hover,.idx:focus-visible{background:var(--green);border-color:var(--green);transform:translateY(-3px)}
+.idx:hover span,.idx:focus-visible span{color:var(--ink)}
+
+/* Logo explorer */
+.split{display:flex;flex-wrap:wrap;gap:24px;align-items:stretch}
+.split>.main{flex:999 1 560px;min-width:0}
+.split>.side{flex:1 1 300px;min-width:0}
+.stage{min-height:420px;border:1px solid var(--line);border-radius:56px 0 56px 0;display:flex;align-items:center;justify-content:center;padding:64px 32px;transition:background .22s var(--ease)}
+.stage .frame{display:flex;align-items:center;justify-content:center;outline-offset:28px}
+.stage .frame.area{outline:2px dashed var(--green)}
+.check{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;cursor:pointer}
+.check input{accent-color:var(--green);width:18px;height:18px}
+
+/* Color */
+.ratio{display:flex;height:120px;border-radius:40px 0 40px 0;overflow:hidden;border:1px solid var(--line)}
+.ratio>div{display:flex;align-items:flex-end;padding:18px 20px;font-weight:800;font-size:28px}
+.ratio-l{display:flex;font-size:13px;color:var(--ink-3);font-weight:500;gap:8px}
+.swgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+.sw{cursor:pointer;font:inherit;text-align:left;background:transparent;border:0;padding:0;display:flex;flex-direction:column;gap:6px;transition:transform .14s var(--ease)}
+.sw:hover{transform:translateY(-2px)}
+.sw .chipbig{display:flex;justify-content:space-between;align-items:flex-start;width:100%;height:84px;border-radius:18px 0 18px 0;border:1px solid var(--line);padding:10px 12px;font-size:18px;font-weight:700}
+.sw .chipbig small{font-size:12px}
+.sw[aria-pressed="true"] .chipbig{box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px var(--ink)}
+.sw .nm{font-size:13px;font-weight:600;color:var(--ink)}
+.sw .hx{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.detail-swatch{height:220px;border-radius:32px 0 32px 0;border:1px solid var(--line);display:flex;align-items:flex-end;padding:20px;font-size:32px;font-weight:800;transition:background .22s var(--ease)}
+dl.vals{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 20px;font-size:14px}
+dl.vals dt{color:var(--mute)} dl.vals dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+
+/* Tipografía */
+.specimen{font-size:22px;line-height:1.35;word-break:break-word}
+.bigname{font-size:clamp(64px,9vw,120px);line-height:.9;letter-spacing:-.03em}
+.field{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:500;color:var(--ink-3);min-width:0}
+.field input[type=text]{font:inherit;font-size:16px;padding:14px 18px;border:1px solid var(--line-2);border-radius:14px;color:var(--ink);background:var(--bg)}
+.field input[type=range]{accent-color:var(--green);width:100%}
+.preview{min-height:180px;background:var(--soft);border-radius:32px 0 32px 0;padding:40px;display:flex;align-items:center;overflow:hidden}
+.preview span{line-height:1.05;letter-spacing:-.02em;word-break:break-word}
+@media (max-width:480px){.preview{padding:24px}}
+
+/* Composición */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
+.rules>div{border-top:3px solid var(--ink);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.rules>div:nth-child(even){border-top-color:var(--green)}
+.rules b{font-size:16px} .rules span{font-size:14px;line-height:1.6;color:var(--ink-3)}
+
+/* Recursos */
+.dlgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:20px}
+.dlcard{border:1px solid var(--line);border-radius:28px 0 28px 0;overflow:hidden;display:flex;flex-direction:column;transition:border-color .22s var(--ease)}
+.dlcard:hover{border-color:var(--ink)}
+.dlprev{height:180px;background:var(--soft);display:flex;align-items:center;justify-content:center;padding:28px}
+.dlprev img{max-height:124px;width:auto;object-fit:contain}
+.dlbody{padding:20px;display:flex;flex-direction:column;gap:14px;flex-grow:1}
+.dlbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.dlbtn{cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:9px 16px;border-radius:999px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:background .14s var(--ease),color .14s var(--ease)}
+.dlbtn:hover{background:var(--green);border-color:var(--green)}
+.dlbtn[disabled]{opacity:.4;cursor:not-allowed}
+.dlmsg{font-size:12px;color:var(--ink-3);min-height:18px}
+.dlicon{width:48px;height:48px;border-radius:16px 0 16px 0;background:var(--green);display:flex;align-items:center;justify-content:center;flex:none}
+
+/* Pie */
+footer.foot{background:var(--ink);color:#FFFFFF}
+footer.foot .wrap{padding-block:80px 40px;display:flex;flex-direction:column;gap:56px}
+footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:var(--grey-dot)}
+</style>
+
+<!-- HERO -->
+<header id="inicio" class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="stack" style="gap:28px">
+        <div class="kicker"><i></i><span class="eyebrow" style="color:var(--ink-3)">Universidad Ean · Identidad visual</span></div>
+        <h1>Manual de<br>identidad visual<span class="dot">.</span></h1>
+        <p class="muted" style="margin:0;font-size:18px;line-height:1.6;max-width:480px">Este manual reúne las reglas para usar nuestra identidad: logotipo, color, tipografía, composición, nuestra mascota Meli y la línea de merch. Explóralo, prueba los elementos y descarga los logos oficiales.</p>
+        <div class="row" style="gap:12px">
+          <a class="btn green" href="#logotipo">Empezar a explorar</a>
+          <a class="btn" href="#recursos">Descargar logos</a>
+        </div>
+      </div>
+      <div class="hero-art" id="heroArt">
+        <img class="hero-img" src="img/edificio.png" alt="Edificio con columnas de colores y jardines colgantes">
+        <canvas id="heroDots" aria-hidden="true"></canvas>
+        <span class="hero-hint">Mueve el cursor sobre el edificio · clic para dispersar</span>
+      </div>
+    </div>
+
+    <nav class="index" aria-label="Secciones del manual">
+      <a class="idx" href="#logotipo"><span class="n">01</span><span class="t">Logotipo<span class="dot">.</span></span><span class="d">Estructura, usos incorrectos, procesos, co-branding, acreditación</span></a>
+      <a class="idx" href="#color"><span class="n">02</span><span class="t">Color<span class="dot">.</span></span><span class="d">Primarios, extensiones y Ean Virtual</span></a>
+      <a class="idx" href="#tipografia"><span class="n">03</span><span class="t">Tipografía<span class="dot">.</span></span><span class="d">Mikro y Poppins</span></a>
+      <a class="idx" href="#composicion"><span class="n">04</span><span class="t">Composición<span class="dot">.</span></span><span class="d">Retícula 1:1 y 16:9</span></a>
+      <a class="idx" href="#meli"><span class="n">05</span><span class="t">Meli<span class="dot">.</span></span><span class="d">Construcción, versiones, stickers, Meli Virtual</span></a>
+      <a class="idx" href="#merch"><span class="n">06</span><span class="t">Merch<span class="dot">.</span></span><span class="d">Agendas, accesorios y ropa</span></a>
+      <a class="idx" href="#recursos"><span class="n">07</span><span class="t">Recursos<span class="dot">.</span></span><span class="d">Descarga el logo en PNG, SVG y PDF</span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- 01 LOGOTIPO -->
+<section id="logotipo" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="sec-num">01</span><h2>Logotipo<span class="dot">.</span></h2></div>
+      <p>El logosímbolo une el símbolo de puntos, construido sobre una retícula hexagonal, con la palabra ean y el descriptor universidad. Se usa en positivo o en negativo, siempre completo y sin alteraciones.</p>
+    </div>
+
+    <div class="split">
+      <div class="main stage" id="stage">
+        <div class="frame" id="logoFrame"><img id="logoImg" src="img/logo-negro.png" alt="Logosímbolo Universidad Ean" style="width:400px"></div>
+      </div>
+      <div class="side box alt">
+        <div class="stack" style="gap:6px"><span class="eyebrow">Explorador</span><span style="font-size:22px;font-weight:700">Prueba el logosímbolo</span></div>
+        <div class="stack" style="gap:10px"><span style="font-size:14px;font-weight:600">Fondo</span><div class="row" id="bgOpts"></div></div>
+        <div class="stack" style="gap:10px"><span style="font-size:14px;font-weight:600">Versión</span><div class="row" id="verOpts"></div></div>
+        <label class="check" for="areaToggle"><input type="checkbox" id="areaToggle">Mostrar área de reserva</label>
+        <p id="logoNote" class="cap" style="margin:0;margin-top:auto;border-top:1px solid var(--line);padding-top:20px"></p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <figure class="box">
+        <div class="stack"><span class="eyebrow">Estructura</span><h3>Área segura</h3></div>
+        <img src="img/area-segura.jpg" alt="Diagrama del área segura del logosímbolo con medida 4x" loading="lazy">
+        <figcaption>Alrededor del logosímbolo se reserva un espacio libre de 4x, medido con la unidad x del diagrama. Ningún texto, imagen o borde invade esa zona. El descriptor tiene versiones principal, vertical y horizontal.</figcaption>
+      </figure>
+      <figure class="box">
+        <div class="stack"><span class="eyebrow">Cuidado</span><h3>Usos incorrectos</h3></div>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+          <img src="img/usos-incorrectos.jpg" alt="Quince ejemplos de usos incorrectos del logosímbolo" loading="lazy" style="flex:1 1 200px;min-width:0;max-width:280px">
+          <ul class="bullets" style="flex:1 1 180px;min-width:0">
+            <li>No cambiar sus colores ni aplicarlo en degradados o tonos no institucionales.</li>
+            <li>No reorganizar, separar ni reescalar el símbolo, la palabra ean o el descriptor.</li>
+            <li>No rotar, deformar ni aplicar efectos.</li>
+            <li>No reemplazar los puntos del símbolo por otras formas.</li>
+          </ul>
+        </div>
+      </figure>
+    </div>
+
+    <div class="box">
+      <div class="sec-head" style="gap:16px">
+        <div class="stack"><span class="eyebrow">Submarcas</span><h3>Procesos y productos</h3></div>
+        <p class="cap" style="max-width:520px;font-size:14px">El logosímbolo va primero, luego una línea divisoria y el nombre o la marca del proceso, con 4x de separación a cada lado. El nombre se escala al 100 %, 70 % o 50 % según su extensión.</p>
+      </div>
+      <div class="grid g3" style="align-items:start">
+        <img src="img/procesos-1.jpg" alt="Lockups de procesos: pregrados, ean virtual, educación continua y facultad" loading="lazy">
+        <img src="img/procesos-2.jpg" alt="Lockups de productos: impacta, dfe, ean a tu lado, Assesment Center y Humanise" loading="lazy">
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <figure class="box"><h3 style="font-size:22px">QS Stars</h3><img src="img/qs.jpg" alt="Uso correcto del sello QS Stars e insignias" loading="lazy"><figcaption>El sello QS acompaña al logosímbolo o al claim, separado por línea divisoria y con 4x de área segura.</figcaption></figure>
+      <figure class="box"><h3 style="font-size:22px">Co-branding</h3><img src="img/cobranding.jpg" alt="Ejemplos de co-branding con aliados" loading="lazy"><figcaption>Con aliados, el logosímbolo Ean va a la izquierda y la marca aliada a la derecha, separados por línea divisoria.</figcaption></figure>
+      <figure class="box"><h3 style="font-size:22px">Acreditación</h3><img src="img/acreditacion.jpg" alt="Logosímbolo con texto de acreditación en alta calidad" loading="lazy"><figcaption>Acreditada en Alta Calidad · res. Nº 023654 del Mineducación 10/12/21, vigencia 10/12/27. Versión horizontal o vertical.</figcaption></figure>
+    </div>
+
+    <div class="grid g2">
+      <div class="box dark">
+        <div class="stack"><span class="eyebrow" style="color:var(--grey-dot)">Sello obligatorio</span><h3>Vigilada MinEducación<span class="dot">.</span></h3></div>
+        <div class="row" style="gap:12px"><span style="border:1px solid var(--mute);border-radius:999px;padding:8px 14px;font-size:13px">Horizontal</span><span style="border:1px solid var(--mute);border-radius:999px;padding:8px 14px;font-size:13px">Vertical ascendente</span></div>
+        <span style="font-size:14px;font-weight:600">Se aplica en:</span>
+        <ul class="bullets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px 24px;color:var(--line)">
+          <li class="g">Televisión pública o privada.</li>
+          <li class="g">Páginas web.</li>
+          <li class="g">Afiches publicitarios, volantes, catálogos, pendones, folletos y vallas.</li>
+          <li class="g">Prensa escrita y electrónica.</li>
+          <li class="g">Redes sociales (publicidad pautada).</li>
+          <li class="g">Cualquier artículo de mercadeo relacionado con la Universidad Ean y su oferta académica.</li>
+          <li class="g">Formatos de recibos de pago de derechos pecuniarios.</li>
+          <li class="g">Documentos institucionales como constancias y certificados.</li>
+        </ul>
+      </div>
+      <figure class="box">
+        <div class="stack"><span class="eyebrow">Cierre de piezas</span><h3>Claim</h3></div>
+        <img src="img/claim.jpg" alt="Claim Somos la U. del emprendimiento sostenible en positivo, negativo y aplicaciones de cierre" loading="lazy">
+        <figcaption>«Somos la U. del emprendimiento sostenible.» Se usa en positivo o negativo y, en el cierre de piezas, acompañado del sello QS.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COLOR -->
+<section id="color" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="sec-num">02</span><h2>Color<span class="dot">.</span></h2></div>
+      <p>Busca el equilibrio visual armonioso: 60 % color dominante (fondos y secciones), 30 % secundario (cuerpo de textos y acentos) y 10 % acento (titulares, CTA e iconos). Esta fórmula garantiza contraste y evita espacios sobrecargados.</p>
+    </div>
+    <div class="stack" style="gap:12px">
+      <div class="ratio" role="img" aria-label="Proporción 60 por ciento blanco, 30 por ciento verde, 10 por ciento negro">
+        <div style="flex:60;background:#FFFFFF;color:var(--ink)">60%</div>
+        <div style="flex:30;background:var(--green);color:var(--ink)">30%</div>
+        <div style="flex:10;min-width:72px;background:var(--ink);color:#FFFFFF;font-size:22px;padding-inline:14px">10%</div>
+      </div>
+      <div class="ratio-l"><span style="flex:60">Blanco 100 · dominante</span><span style="flex:30">Verde Primario 100 · secundario</span><span style="flex:10;min-width:72px">Negro · acento</span></div>
+    </div>
+
+    <div class="stack" style="gap:20px">
+      <div class="row" role="tablist" aria-label="Paletas" id="palTabs"></div>
+      <div class="split" style="align-items:flex-start">
+        <div class="main box" id="palPanel" role="tabpanel"></div>
+        <aside class="side box alt" style="padding:24px;gap:20px">
+          <div class="detail-swatch" id="selSwatch"></div>
+          <div class="stack" style="gap:4px"><span class="eyebrow" id="selPal"></span><span style="font-size:24px;font-weight:700" id="selName"></span></div>
+          <dl class="vals"><dt>HEX</dt><dd id="selHex"></dd><dt>RGB</dt><dd id="selRgb"></dd><dt>Texto</dt><dd id="selText"></dd></dl>
+          <button type="button" class="btn green" id="copyBtn" style="justify-content:center;font-size:15px"></button>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TIPOGRAFÍA -->
+<section id="tipografia" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="sec-num">03</span><h2>Tipografía<span class="dot">.</span></h2></div>
+      <p>Mikro es una sans serif que refleja la cercanía, solidez, empatía y modernidad de nuestra marca. La usamos de manera consistente en presentaciones, comunicaciones y piezas gráficas. Poppins es la fuente complementaria.</p>
+    </div>
+    <div class="grid g2">
+      <div class="box dark">
+        <div class="row" style="justify-content:space-between;align-items:baseline;gap:12px"><span class="eyebrow" style="color:var(--grey-dot)">Fuente de la marca</span><span style="font-size:13px;color:var(--grey-dot)">lettersfromsweden.se</span></div>
+        <span class="bigname" style="font-weight:900">Mikro<span class="dot">.</span></span>
+        <div class="stack" style="gap:14px;border-top:1px solid var(--ink-3);padding-top:20px">
+          <span style="font-size:13px;color:var(--grey-dot)">Mikro Bold</span>
+          <span class="specimen" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+          <span style="font-size:13px;color:var(--grey-dot);margin-top:8px">Mikro Black</span>
+          <span class="specimen" style="font-weight:900">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+        </div>
+      </div>
+      <div class="box">
+        <div class="row" style="justify-content:space-between;align-items:baseline;gap:12px"><span class="eyebrow">Complementaria · moderna sans serif</span><a href="https://fonts.google.com/specimen/Poppins" style="font-size:13px;color:var(--ink)">Google Fonts</a></div>
+        <span class="bigname" style="font-weight:700">Poppins<span class="dot">.</span></span>
+        <div class="stack" style="gap:14px;border-top:1px solid var(--line);padding-top:20px">
+          <span style="font-size:13px;color:var(--mute)">Poppins Regular</span>
+          <span class="specimen" style="font-weight:400">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+          <span style="font-size:13px;color:var(--mute);margin-top:8px">Poppins Bold</span>
+          <span class="specimen" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+        </div>
+      </div>
+    </div>
+    <div class="box alt" style="border-radius:0 56px 0 56px">
+      <div class="sec-head" style="gap:20px">
+        <div class="stack" style="gap:6px"><span class="eyebrow">Probador</span><span style="font-size:22px;font-weight:700">Escribe tu titular</span></div>
+        <div class="row" id="weightOpts"></div>
+      </div>
+      <div class="row" style="gap:20px;align-items:center">
+        <label class="field" for="typeText" style="flex:999 1 320px">Texto<input type="text" id="typeText" value="Somos la U. del emprendimiento sostenible."></label>
+        <label class="field" for="typeSize" style="flex:1 1 220px"><span>Tamaño · <b id="sizeLbl">64 px</b></span><input type="range" id="typeSize" min="24" max="128" step="2" value="64"></label>
+      </div>
+      <div class="preview"><span id="typePrev" style="font-size:64px;font-weight:900">Somos la U. del emprendimiento sostenible.</span></div>
+      <span style="font-size:12px;color:var(--mute)">Vista web con Poppins; en piezas gráficas los titulares se componen en Mikro Bold y Mikro Black.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 04 COMPOSICIÓN -->
+<section id="composicion" class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="sec-num">04</span><h2>Composición<span class="dot">.</span></h2></div>
+      <p>La composición es la organización estratégica de elementos visuales dentro de un espacio, para transmitir un mensaje claro y generar una experiencia visual efectiva: imágenes, texto, color y tipografía dispuestos para lograr el impacto deseado.</p>
+    </div>
+    <div class="rules">
+      <div><b>Logotipo</b><span>Ya sea de procesos, acreditación o co-branding, va en la parte superior del formato: izquierda, centro o derecha.</span></div>
+      <div><b>Imagen</b><span>Abarca el 100 % del formato, con un foco central.</span></div>
+      <div><b>Texto y CTA</b><span>El texto acompaña la imagen; el CTA se ubica en la zona inferior.</span></div>
+      <div><b>Claim de cierre</b><span>Cierra la pieza en la parte inferior.</span></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <figure class="box"><img src="img/reticula-1.jpg" alt="Retícula de composición para formato 1:1" loading="lazy"><figcaption style="font-weight:600;color:var(--ink)">Formato 1:1</figcaption></figure>
+      <figure class="box"><img src="img/reticula-2.jpg" alt="Retículas de composición para formato 16:9 horizontal y vertical" loading="lazy"><figcaption style="font-weight:600;color:var(--ink)">Formato 16:9 · horizontal y vertical</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 05 MELI -->
+<section id="meli" class="sec">
+  <div class="wrap" style="gap:40px">
+    <div class="sec-head">
+      <div><span class="sec-num">05</span><h2>Meli<span class="dot">.</span></h2></div>
+      <p>Nuestra mascota. Respeta su construcción y proporciones, y usa solo las versiones, stickers y modelos aprobados.</p>
+    </div>
+    <div class="row" role="tablist" aria-label="Meli" id="meliTabs"></div>
+    <div class="stack" style="gap:6px"><span style="font-size:24px;font-weight:700" id="meliTitle"></span><span class="muted" style="font-size:14px" id="meliNote"></span></div>
+    <div class="grid" id="meliGrid" style="grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));align-items:start"></div>
+  </div>
+</section>
+
+<!-- 06 MERCH -->
+<section id="merch" class="sec">
+  <div class="wrap" style="gap:40px">
+    <div class="sec-head">
+      <div><span class="sec-num">06</span><h2>Merch<span class="dot">.</span></h2></div>
+      <p>Aplicaciones de la marca en agendas, accesorios y ropa: referencias de estilo para producir piezas coherentes con la identidad.</p>
+    </div>
+    <div class="row" role="tablist" aria-label="Merch" id="merchTabs"></div>
+    <div class="grid" id="merchGrid" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));align-items:start"></div>
+  </div>
+</section>
+
+<!-- 07 RECURSOS -->
+<section id="recursos" class="sec">
+  <div class="wrap" style="gap:40px">
+    <div class="sec-head">
+      <div><span class="sec-num">07</span><h2>Recursos<span class="dot">.</span></h2></div>
+      <p>Descarga las variantes oficiales del logo. PNG con fondo transparente en alta resolución para digital; SVG y PDF vectoriales para impresión y diseño.</p>
+    </div>
+    <div class="box" style="border-radius:56px 0 56px 0;gap:28px">
+      <div class="sec-head" style="align-items:center;gap:16px">
+        <div style="flex-direction:row;align-items:center;gap:14px">
+          <span class="dlicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span>
+          <span class="stack" style="gap:2px"><span style="font-size:22px;font-weight:700">Descarga de logos</span><span class="muted" style="font-size:13px">7 variantes · positivo</span></span>
+        </div>
+        <span class="muted" style="font-size:13px;max-width:none">Respeta el área segura y los usos correctos al aplicarlos.</span>
+      </div>
+      <div class="dlgrid" id="dlGrid"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="sec-head" style="gap:32px">
+      <div style="gap:24px"><img src="img/logo-blanco.png" alt="Universidad Ean" style="width:240px"><span style="font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.03em;line-height:1">Gracias<span class="dot">.</span></span></div>
+      <a class="btn green" href="#inicio" style="font-size:14px;padding:12px 20px">Volver arriba</a>
+    </div>
+    <div class="legal"><span>©Universidad Ean | SNIES 2812 | Vigilada Mineducación | Personería Jurídica Res. n° 2898 del Minjusticia - 16/05/69</span><span>Manual de Identidad Visual 2026</span></div>
+  </div>
+</footer>
+
+<style>.box.dark .bullets li.g::before{background:var(--green);width:6px;height:6px;margin-top:8px}</style>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const h = (tag, attrs, kids) => { const el = document.createElement(tag); if (attrs) for (const k in attrs) { if (k === 'text') el.textContent = attrs[k]; else if (k === 'on') { for (const ev in attrs.on) el.addEventListener(ev, attrs.on[ev]); } else if (k === 'style') el.style.cssText = attrs[k]; else el.setAttribute(k, attrs[k]); } (kids || []).forEach(c => c && el.appendChild(c)); return el; };
+  const pills = (box, opts, current, onPick, roleTab) => { box.replaceChildren(...opts.map(o => { const b = h('button', { type: 'button', class: 'pill' }); if (roleTab) { b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', String(o.id === current)); } else b.setAttribute('aria-pressed', String(o.id === current)); if (o.hex) b.appendChild(h('span', { class: 'chip', style: 'background:' + o.hex })); b.appendChild(document.createTextNode(o.label)); b.addEventListener('click', () => onPick(o.id)); return b; })); };
+
+  /* ---------- Hero: los 21 puntos del símbolo ---------- */
+  (function(){
+    const art = $('heroArt'), cv = $('heroDots'), ctx = cv.getContext('2d');
+    // Posiciones de los 21 puntos del símbolo (unidades del archivo vectorial, centro 631,556)
+    const RAW = [[182,71],[406,71],[855,71],[1079,71],[70,265],[294,265],[967,265],[1191,265],[182,459],[1079,459],[70,653],[294,653],[967,653],[1191,653],[182,847],[406,847],[630,847],[855,847],[1079,847],[518,1041],[742,1041]];
+    const BASE = RAW.map(p => [p[0] - 631, p[1] - 556]);
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let W = 0, H = 0, dpr = 1, S = 1, R = 6;
+    const dots = BASE.map((b, i) => ({ x: 0, y: 0, vx: 0, vy: 0, k: 0.018 + (i % 7) * 0.004, b }));
+    const ptr = { x: 0, y: 0, on: false, px: 0, py: 0 };
+    const anchor = { x: 0, y: 0 };
+    let t = 0, running = false, visible = true, raf = 0, inited = false;
+    function size(){
+      const r = art.getBoundingClientRect(); dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height; if (!W || !H) return;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      S = Math.min(W, H) * 0.42 / 1263; R = Math.max(4, 50 * S);
+      if (!inited) { anchor.x = W / 2; anchor.y = H / 2; dots.forEach(d => { d.x = anchor.x + d.b[0] * S; d.y = anchor.y + d.b[1] * S; }); inited = true; }
+      if (!running) draw();
+    }
+    function step(){
+      t += 1;
+      // Ancla: deriva suave en reposo, sigue al cursor cuando está encima
+      const tx = ptr.on ? ptr.x : W / 2 + Math.sin(t * 0.006) * W * 0.12;
+      const ty = ptr.on ? ptr.y : H / 2 + Math.sin(t * 0.0045 + 1) * H * 0.10;
+      anchor.x += (tx - anchor.x) * (ptr.on ? 0.12 : 0.03);
+      anchor.y += (ty - anchor.y) * (ptr.on ? 0.12 : 0.03);
+      const rot = Math.sin(t * 0.004) * 0.35 + (ptr.on ? (ptr.x - W / 2) / W * 0.6 : 0);
+      const sc = ptr.on ? 0.9 + Math.sin(t * 0.05) * 0.04 : 1 + Math.sin(t * 0.02) * 0.05;
+      const c = Math.cos(rot), s = Math.sin(rot);
+      const pvx = ptr.x - ptr.px, pvy = ptr.y - ptr.py; ptr.px = ptr.x; ptr.py = ptr.y;
+      const minD = R * 2.6, push = R * 5;
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        const bx = d.b[0] * S * sc, by = d.b[1] * S * sc;
+        const gx = anchor.x + bx * c - by * s, gy = anchor.y + bx * s + by * c;
+        let fx = (gx - d.x) * d.k, fy = (gy - d.y) * d.k;
+        // Se afectan entre sí: repulsión suave entre puntos cercanos
+        for (let j = 0; j < dots.length; j++) { if (j === i) continue; const o = dots[j]; const dx = d.x - o.x, dy = d.y - o.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < minD) { const f = (minD - dd) / minD * 0.6; fx += dx / dd * f; fy += dy / dd * f; } }
+        // El cursor los aparta y los arrastra con su movimiento
+        if (ptr.on) { const dx = d.x - ptr.x, dy = d.y - ptr.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < push) { const f = (push - dd) / push; fx += dx / dd * f * 2.2 + pvx * f * 0.25; fy += dy / dd * f * 2.2 + pvy * f * 0.25; } }
+        d.vx = (d.vx + fx) * 0.86; d.vy = (d.vy + fy) * 0.86;
+        d.x += d.vx; d.y += d.vy;
+        // Rebote suave en los bordes de la imagen
+        if (d.x < R) { d.x = R; d.vx *= -0.6; } if (d.x > W - R) { d.x = W - R; d.vx *= -0.6; }
+        if (d.y < R) { d.y = R; d.vy *= -0.6; } if (d.y > H - R) { d.y = H - R; d.vy *= -0.6; }
+      }
+    }
+    function draw(){
+      if (!W || !H) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#151617';
+      for (const d of dots) { ctx.beginPath(); ctx.arc(d.x, d.y, R, 0, Math.PI * 2); ctx.fill(); }
+    }
+    function loop(){ if (!running) return; step(); draw(); raf = requestAnimationFrame(loop); }
+    function start(){ if (reduce || running || !visible) return; running = true; raf = requestAnimationFrame(loop); }
+    function stop(){ running = false; cancelAnimationFrame(raf); }
+    const local = e => { const r = art.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    art.addEventListener('pointermove', e => { const p = local(e); if (!ptr.on) { ptr.px = p[0]; ptr.py = p[1]; } ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; art.classList.add('touched'); });
+    art.addEventListener('pointerleave', () => { ptr.on = false; });
+    art.addEventListener('pointerdown', e => { const p = local(e); art.classList.add('touched'); for (const d of dots) { const dx = d.x - p[0], dy = d.y - p[1]; const dd = Math.hypot(dx, dy) || 1; const f = 18 * Math.max(0.3, 1 - dd / Math.max(W, H)); d.vx += dx / dd * f; d.vy += dy / dd * f; } });
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(art); else window.addEventListener('resize', size);
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(art);
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+    size(); start();
+  })();
+
+  /* ---------- Logo ---------- */
+  const BG = [{ id: 'blanco', label: 'Blanco', hex: '#FFFFFF' }, { id: 'gris', label: 'Gris P5', hex: '#F2F2F2' }, { id: 'negro', label: 'Negro', hex: '#151617' }];
+  const VER = [{ id: 'completo', label: 'Logosímbolo' }, { id: 'simbolo', label: 'Símbolo' }];
+  const logo = { bg: 'blanco', ver: 'completo' };
+  function renderLogo(){
+    const dark = logo.bg === 'negro';
+    $('stage').style.background = BG.find(b => b.id === logo.bg).hex;
+    const img = $('logoImg');
+    img.src = 'img/' + (logo.ver === 'simbolo' ? 'simbolo' : 'logo') + (dark ? '-blanco' : '-negro') + '.png';
+    img.alt = logo.ver === 'simbolo' ? 'Símbolo Universidad Ean' : 'Logosímbolo Universidad Ean';
+    img.style.width = logo.ver === 'simbolo' ? '200px' : '400px';
+    $('logoNote').textContent = dark ? 'Negativo: logosímbolo en blanco sobre negro. Úsalo en fondos oscuros.' : 'Positivo: logosímbolo en negro sobre blanco o gris claro. Es la versión preferente.';
+    pills($('bgOpts'), BG, logo.bg, id => { logo.bg = id; renderLogo(); });
+    pills($('verOpts'), VER, logo.ver, id => { logo.ver = id; renderLogo(); });
+  }
+  $('areaToggle').addEventListener('change', e => $('logoFrame').classList.toggle('area', e.target.checked));
+  renderLogo();
+
+  /* ---------- Color ---------- */
+  const PAL = [
+    { id: 'primarios', label: 'Primarios', groups: [
+      { label: 'Verde', items: [['Verde P150','#008f4e'],['Verde Primario 100','#00bf68','30%',1],['Verde P80','#33cc86'],['Verde P60','#66d9a4'],['Verde P40','#99e5c3'],['Verde P20','#ccf2e1']] },
+      { label: 'Negro', items: [['Negro P150','#151617'],['Negro Primario 100','#2d2e2f','',1],['Negro P80','#464748'],['Negro P60','#737374'],['Negro P40','#a1a2a2']] },
+      { label: 'Blanco y grises', items: [['Blanco 100','#ffffff','60%',1],['Gris P5','#f2f2f2'],['Gris P10','#e6e6e6'],['Gris P20','#d0d0d1']] } ] },
+    { id: 'pregrado', label: 'Pregrado', groups: [
+      { label: 'Primario', items: [['Verde Primario 100','#00bf68','',1],['Verde P80','#33cc86'],['Verde P60','#66d9a4'],['Verde P40','#99e5c3']] },
+      { label: 'Secundario', items: [['Verde Secundario 100','#b6e3bb','',1],['Verde S80','#c5e9c9'],['Verde S60','#d3eed6'],['Verde S40','#e2f4e4']] } ] },
+    { id: 'posgrado', label: 'Posgrado', groups: [
+      { label: 'Primario', items: [['Azul Primario 100','#0033a3','',1],['Azul P80','#335cb5'],['Azul P60','#6685c8'],['Azul P40','#99adda']] },
+      { label: 'Secundario', items: [['Azul Secundario 100','#9fe0e6','',1],['Azul S80','#b2e6eb'],['Azul S60','#c5ecf0'],['Azul S40','#d9f3f5']] } ] },
+    { id: 'regiones', label: 'Regiones', groups: [
+      { label: 'Primario', items: [['Azul Primario 100','#0033a3','',1],['Azul P80','#335cb5'],['Azul P60','#6685c8'],['Azul P40','#99adda']] },
+      { label: 'Secundario', items: [['Amarillo Secundario 100','#f9b122','',1],['Amarillo S80','#fac14e'],['Amarillo S60','#fbd07a'],['Amarillo S40','#fde0a7']] } ] },
+    { id: 'internacional', label: 'Internacionalización', groups: [
+      { label: 'Primario', items: [['Morado I100','#562b9a','',1],['Morado I80','#7855ae'],['Morado I60','#9a80c2'],['Morado I40','#bbaad7']] },
+      { label: 'Secundario', items: [['Azul Secundario 100','#9fe0e6','',1],['Azul S80','#b2e6eb'],['Azul S60','#c5ecf0'],['Azul S40','#d9f3f5']] } ] },
+    { id: 'colaboradores', label: 'Colaboradores', groups: [
+      { label: 'Primario', items: [['Verde C100','#4caea9','',1],['Verde C80','#70beba'],['Verde C60','#94cecb'],['Verde C40','#b7dfdd']] },
+      { label: 'Secundario', items: [['Verde Secundario 100','#b6e3bb','',1],['Verde S80','#c5e9c9'],['Verde S60','#d3eed6'],['Verde S40','#e2f4e4']] } ] },
+    { id: 'continua', label: 'Ed. Continua – Empresas', groups: [
+      { label: 'Verde', items: [['Verde Ed100','#7cebc0'],['Verde Ed80','#96efcd'],['Verde Ed60','#b0f3d9'],['Verde Ed40','#cbf7e6']] },
+      { label: 'Azul', items: [['Azul Ed100','#334786'],['Azul Ed80','#5c6c9e'],['Azul Ed60','#8591b6'],['Azul Ed40','#adb5cf']] } ] },
+    { id: 'virtual', label: 'Ean Virtual', groups: [
+      { label: 'Amarillo', items: [['Amarillo V100','#c8fa1e','20%',1],['Amarillo V75','#d6fb56'],['Amarillo V50','#e3fc8e'],['Amarillo V25','#f1fec7']] },
+      { label: 'Azul', items: [['Azul V100','#00e6ff','20%',1],['Azul V75','#40ecff'],['Azul V50','#80f2ff'],['Azul V25','#bff9ff']] },
+      { label: 'Azul B', items: [['AzulB V100','#280a55','50%',1],['AzulB V75','#5e4780'],['AzulB V50','#9384aa'],['AzulB V25','#c9c2d4']] },
+      { label: 'Negro', items: [['Negro V100','#14141e','10%',1],['Negro V75','#4f4f56'],['Negro V50','#89898e'],['Negro V25','#c4c4c7']] } ] }
+  ];
+  const rgb = hex => [0,2,4].map(i => parseInt(hex.slice(1).substr(i,2),16));
+  const lum = hex => { const c = rgb(hex).map(v => { v/=255; return v <= .03928 ? v/12.92 : Math.pow((v+.055)/1.055, 2.4); }); return .2126*c[0] + .7152*c[1] + .0722*c[2]; };
+  const col = { pal: 'primarios', sel: { name: 'Verde Primario 100', hex: '#00bf68', pct: '30%' } };
+  let copyT;
+  function renderColor(){
+    const pal = PAL.find(p => p.id === col.pal);
+    pills($('palTabs'), PAL, col.pal, id => { const p = PAL.find(x => x.id === id); const f = p.groups[0].items[0]; col.pal = id; col.sel = { name: f[0], hex: f[1], pct: f[2] || '' }; renderColor(); }, true);
+    const panel = $('palPanel');
+    panel.replaceChildren(
+      h('div', { class: 'stack', style: 'gap:6px' }, [h('span', { style: 'font-size:24px;font-weight:700', text: pal.label }), h('span', { class: 'muted', style: 'font-size:14px', text: 'Haz clic en un color para ver sus valores y copiar el HEX.' })]),
+      ...pal.groups.map(g => h('div', { class: 'stack', style: 'gap:12px' }, [
+        h('span', { class: 'eyebrow', text: g.label }),
+        h('div', { class: 'swgrid' }, g.items.map(it => {
+          const on = col.sel.hex === it[1] && col.sel.name === it[0];
+          const fg = lum(it[1]) > .4 ? '#151617' : '#FFFFFF';
+          return h('button', { type: 'button', class: 'sw', 'aria-pressed': String(on), 'aria-label': it[0] + ' ' + it[1].toUpperCase(), on: { click: () => { col.sel = { name: it[0], hex: it[1], pct: it[2] || '' }; renderColor(); } } }, [
+            h('span', { class: 'chipbig', style: 'background:' + it[1] + ';color:' + fg }, [h('span', { text: it[3] ? 'P' : '' }), h('small', { text: it[2] || '' })]),
+            h('span', { class: 'nm', text: it[0] }), h('span', { class: 'hx', text: it[1] })
+          ]);
+        }))
+      ]))
+    );
+    const s = col.sel, L = lum(s.hex);
+    $('selSwatch').style.background = s.hex; $('selSwatch').style.color = L > .4 ? '#151617' : '#FFFFFF'; $('selSwatch').textContent = s.pct || '';
+    $('selPal').textContent = pal.label; $('selName').textContent = s.name;
+    $('selHex').textContent = s.hex.toUpperCase(); $('selRgb').textContent = rgb(s.hex).join(', ');
+    const cW = 1.05/(L+.05), cB = (L+.05)/(lum('#151617')+.05);
+    $('selText').textContent = cB >= cW ? 'Negro sobre este color (' + cB.toFixed(1) + ':1)' : 'Blanco sobre este color (' + cW.toFixed(1) + ':1)';
+    $('copyBtn').textContent = 'Copiar ' + s.hex.toUpperCase();
+  }
+  $('copyBtn').addEventListener('click', () => {
+    const v = col.sel.hex.toUpperCase(); const b = $('copyBtn');
+    const done = msg => { b.textContent = msg; clearTimeout(copyT); copyT = setTimeout(() => { b.textContent = 'Copiar ' + v; }, 1800); };
+    try { navigator.clipboard.writeText(v).then(() => done('HEX copiado'), () => done('Copia manual: ' + v)); } catch (e) { done('Copia manual: ' + v); }
+  });
+  renderColor();
+
+  /* ---------- Tipografía ---------- */
+  const W = [{ id: 400, label: 'Regular' }, { id: 700, label: 'Bold' }, { id: 900, label: 'Black' }];
+  let weight = 900;
+  function renderType(){ pills($('weightOpts'), W, weight, id => { weight = id; $('typePrev').style.fontWeight = id; renderType(); }); }
+  $('typeText').addEventListener('input', e => { $('typePrev').textContent = e.target.value || ' '; });
+  $('typeSize').addEventListener('input', e => { $('typePrev').style.fontSize = e.target.value + 'px'; $('sizeLbl').textContent = e.target.value + ' px'; });
+  renderType();
+
+  /* ---------- Galerías ---------- */
+  const fig = (src, alt, cap) => h('figure', { class: 'box', style: 'padding:24px;gap:14px' }, [h('img', { src: src, alt: alt, loading: 'lazy' }), cap ? h('figcaption', { style: 'font-weight:600;color:var(--ink-2);font-size:13px', text: cap }) : null]);
+  const MELI = [
+    { id: 'construccion', label: 'Construcción', note: 'Vistas frontal, posterior y lateral, con medidas de cada pieza.', imgs: [['meli-construccion.jpg', 'Construcción de Meli con medidas', 'Vistas y medidas']] },
+    { id: 'versiones', label: 'Versiones', note: 'Poses y vestuarios aprobados de Meli.', imgs: [['meli-v1.jpg', 'Meli versión básica en cuatro poses', 'Básica'], ['meli-v2.jpg', 'Meli con chaqueta verde en cuatro poses', 'Chaqueta Ean'], ['meli-v3.jpg', 'Meli con camisetas y en vuelo', 'Camisetas y vuelo']] },
+    { id: 'stickers', label: 'Stickers', note: 'Set de expresiones para redes y mensajería.', imgs: [['meli-stickers.jpg', 'Catorce stickers de Meli con distintas expresiones', 'Expresiones']] },
+    { id: 'virtual', label: 'Meli Virtual', note: 'Versión 3D para Ean Virtual y su model sheet.', imgs: [['meli-virtual.jpg', 'Meli Virtual en 3D', 'Meli Virtual'], ['meli-model.jpg', 'Model sheet de Meli Virtual', 'Model sheet']] }
+  ];
+  let meli = 'construccion';
+  function renderMeli(){ const m = MELI.find(x => x.id === meli); pills($('meliTabs'), MELI, meli, id => { meli = id; renderMeli(); }, true); $('meliTitle').textContent = m.label; $('meliNote').textContent = m.note; $('meliGrid').replaceChildren(...m.imgs.map(i => fig('img/' + i[0], i[1], i[2]))); }
+  renderMeli();
+  const MERCH = [
+    { id: 'agendas', label: 'Agendas', imgs: [['m-agendas-1.jpg', 'Agendas con ilustraciones de campus Legacy y Humanise'], ['m-agendas-2.jpg', 'Agendas azul 1967 y negra']] },
+    { id: 'accesorios', label: 'Accesorios', imgs: [['m-acc-1.jpg', 'Termos, vasos, bolígrafos y tote bags'], ['m-acc-2.jpg', 'Mugs negro y amarillo']] },
+    { id: 'meli', label: 'Accesorios Meli', imgs: [['m-acc-meli.jpg', 'Accesorios de Meli para mascotas, disfraces y estuches']] },
+    { id: 'ropa', label: 'Ropa', imgs: [['m-ropa-1.jpg', 'Busos con gráfica 1967'], ['m-ropa-2.jpg', 'Gorros naranja y verde'], ['m-ropa-3.jpg', 'Conjuntos beige y negro'], ['m-ropa-4.jpg', 'Hoodie azul con Meli']] }
+  ];
+  let merch = 'agendas';
+  function renderMerch(){ const m = MERCH.find(x => x.id === merch); pills($('merchTabs'), MERCH, merch, id => { merch = id; renderMerch(); }, true); $('merchGrid').replaceChildren(...m.imgs.map(i => fig('img/' + i[0], i[1]))); }
+  renderMerch();
+
+  /* ---------- Descargas ---------- */
+  const DL = [
+    ['ean-logotipo', 'Logotipo', 'Palabra ean con descriptor universidad.', ['png','svg','pdf']],
+    ['ean-logosimbolo-horizontal', 'Logosímbolo horizontal', 'Versión principal: símbolo y logotipo.', ['png','svg','pdf']],
+    ['ean-logosimbolo-vertical', 'Logosímbolo vertical', 'Símbolo sobre el logotipo.', ['png','svg','pdf']],
+    ['ean-logosimbolo-descriptor-izquierda', 'Horizontal con descriptor', 'Descriptor universidad a la izquierda.', ['png','svg','pdf']],
+    ['ean-claim-qs', 'Claim con sello QS', 'Somos la U. del emprendimiento sostenible, tres versiones.', ['png','pdf']],
+    ['ean-acreditacion', 'Acreditación en Alta Calidad', 'Logosímbolo con texto de acreditación.', ['png','svg','pdf']],
+    ['ean-vigilada-mineducacion', 'Vigilada MinEducación', 'Sello horizontal obligatorio.', ['png','svg','pdf']]
+  ];
+  let dlNs = null, dlTried = false;
+  const dlReady = (async () => { try { if (window.claude && window.claude.use) dlNs = await window.claude.use('downloads'); } catch (e) { dlNs = null; } dlTried = true; return dlNs; })();
+  let busy = false;
+  const fileUrl = file => new URL('recursos/' + file, location.href).href;
+  function fallback(msgEl, file, why){
+    msgEl.replaceChildren(
+      document.createTextNode(why + ' '),
+      h('a', { href: fileUrl(file), target: '_blank', rel: 'noopener', style: 'color:var(--ink);font-weight:600', text: 'Abrir ' + file }),
+      document.createTextNode(' y guárdalo con clic derecho › Guardar como.')
+    );
+  }
+  async function doDownload(file, msgEl, btns){
+    if (busy) { msgEl.textContent = 'Espera a que termine la descarga en curso.'; return; }
+    if (!(window.claude && window.claude.use)) {
+      const a = document.createElement('a'); a.href = fileUrl(file); a.download = file; a.style.display = 'none';
+      document.body.appendChild(a); a.click(); a.remove();
+      msgEl.textContent = 'Descargado: ' + file; return;
+    }
+    busy = true; btns.forEach(b => b.disabled = true);
+    msgEl.textContent = 'Preparando ' + file + '…';
+    try {
+      const ns = dlTried ? dlNs : await Promise.race([dlReady, new Promise(r => setTimeout(() => r(null), 4000))]);
+      if (!ns || typeof ns.save !== 'function') { fallback(msgEl, file, 'La descarga directa no está disponible en esta vista.'); return; }
+      let blob;
+      try { const res = await fetch('recursos/' + file); if (!res.ok) throw new Error('HTTP ' + res.status); blob = await res.blob(); }
+      catch (e) { console.warn('[descargas] fetch', e); fallback(msgEl, file, 'No se pudo preparar el archivo.'); return; }
+      msgEl.textContent = 'Confirma la descarga en la ventana que aparece.';
+      await ns.save({ filename: file, data: blob });
+      msgEl.textContent = 'Descargado: ' + file;
+    } catch (e) {
+      const c = e && e.code;
+      console.warn('[descargas] save', c, e && e.message);
+      if (c === 'declined') msgEl.textContent = 'Descarga cancelada.';
+      else if (c === 'rate_limited') msgEl.textContent = 'Ya hay una confirmación abierta. Espera un momento e inténtalo de nuevo.';
+      else fallback(msgEl, file, 'No se pudo descargar aquí' + (c ? ' (' + c + ').' : '.'));
+    } finally { busy = false; btns.forEach(b => b.disabled = false); }
+  }
+  $('dlGrid').replaceChildren(...DL.map(d => {
+    const msg = h('span', { class: 'dlmsg', 'aria-live': 'polite' });
+    const btns = d[3].map(ext => h('button', { type: 'button', class: 'dlbtn', 'aria-label': 'Descargar ' + d[1] + ' en ' + ext.toUpperCase(), text: ext.toUpperCase() }));
+    btns.forEach((b, i) => b.addEventListener('click', () => doDownload(d[0] + '.' + d[3][i], msg, btns)));
+    return h('div', { class: 'dlcard' }, [
+      h('div', { class: 'dlprev' }, [h('img', { src: 'recursos/' + d[0] + '.png', alt: d[1], loading: 'lazy' })]),
+      h('div', { class: 'dlbody' }, [
+        h('div', { class: 'stack', style: 'gap:4px' }, [h('span', { style: 'font-size:16px;font-weight:700', text: d[1] }), h('span', { class: 'muted', style: 'font-size:13px;line-height:1.5', text: d[2] })]),
+        h('div', { class: 'dlbtns' }, btns), msg
+      ])
+    ]);
+  }));
+})();
+</script>
+
+</body>
+</html>
