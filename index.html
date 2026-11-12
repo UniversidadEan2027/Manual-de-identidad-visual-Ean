@@ -30,7 +30,39 @@ h1,h2,h3{text-wrap:balance}
 .dot{color:var(--green)}
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 .muted{color:var(--ink-3)}
-section.sec{border-top:1px solid var(--line)}
+section.sec{border-top:1px solid var(--line);scroll-margin-top:56px}
+@font-face{font-family:'Mikro';src:url('fonts/web/Mikro-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Mikro';src:url('fonts/web/Mikro-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+.mikro{font-family:'Mikro', var(--font)}
+/* Menú fijo compacto */
+.mininav{position:fixed;top:env(safe-area-inset-top, 0px);left:0;right:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .22s var(--ease)}
+.mininav.show{transform:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:41;background:var(--bg)}
+.mininav .wrap{display:flex;align-items:center;gap:16px;padding-block:8px}
+.mininav .home{flex:none;display:flex;align-items:center}
+.mininav .home img{height:22px;width:auto}
+.mininav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.mininav ul::-webkit-scrollbar{display:none}
+.mininav a{display:flex;align-items:baseline;gap:6px;white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:13px;font-weight:500;padding:8px 12px;border-radius:999px;transition:background .14s var(--ease)}
+.mininav a small{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+.mininav a:hover{background:var(--soft)}
+.mininav a[aria-current="true"]{background:var(--green);color:var(--ink)}
+.mininav a[aria-current="true"] small{color:var(--ink)}
+/* Recursos */
+.dltools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:4px;gap:4px;background:var(--bg)}
+.seg button{cursor:pointer;font:inherit;font-size:13px;font-weight:600;border:0;border-radius:999px;padding:8px 14px;background:transparent;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#FFFFFF}
+.seg .sw-dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--grey-dot)}
+.dlgroup{display:flex;flex-direction:column;gap:16px}
+.dlgroup>h3{margin:0;font-size:18px;font-weight:700}
+.vers{display:flex;flex-wrap:wrap;gap:6px}
+.vers button{cursor:pointer;font:inherit;font-size:12px;font-weight:500;border:1px solid var(--line-2);border-radius:999px;padding:5px 11px;background:var(--bg);color:var(--ink)}
+.vers button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#FFFFFF}
+.dlprev{transition:background .22s var(--ease)}
+.dlprev.dark{background:var(--ink)}
+.fontprev{height:180px;display:flex;align-items:center;justify-content:center;font-size:72px;line-height:1;background:var(--soft)}
+
 section.sec>.wrap{padding-block:96px;display:flex;flex-direction:column;gap:48px}
 @media (max-width:640px){section.sec>.wrap{padding-block:64px;gap:36px}}
 .sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
@@ -67,7 +99,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 .hero h1{margin:0;font-size:clamp(44px,6.2vw,92px);line-height:.95;font-weight:800;letter-spacing:-.035em}
 .hero-art{position:relative;width:100%;max-width:100%;aspect-ratio:773/1200;overflow:hidden;touch-action:pan-y;cursor:crosshair}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-.hero-art canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.dots-layer{position:fixed;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:30}
 .hero-hint{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);color:var(--ink);font-size:12px;font-weight:600;padding:8px 14px;border-radius:999px;pointer-events:none;transition:opacity .4s var(--ease)}
 .hero-art.touched .hero-hint{opacity:0}
 .kicker{display:flex;align-items:center;gap:10px}
@@ -145,6 +177,22 @@ footer.foot .wrap{padding-block:80px 40px;display:flex;flex-direction:column;gap
 footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:var(--grey-dot)}
 </style>
 
+<canvas class="dots-layer" id="heroDots" aria-hidden="true"></canvas>
+<nav class="mininav" id="miniNav" aria-label="Secciones del manual" aria-hidden="true">
+  <div class="wrap">
+    <a class="home" href="#inicio" aria-label="Volver al inicio" tabindex="-1"><img src="img/simbolo-negro.png" alt=""></a>
+    <ul>
+      <li><a href="#logotipo" tabindex="-1"><small>01</small>Logotipo</a></li>
+      <li><a href="#recursos" tabindex="-1"><small>02</small>Recursos</a></li>
+      <li><a href="#color" tabindex="-1"><small>03</small>Color</a></li>
+      <li><a href="#tipografia" tabindex="-1"><small>04</small>Tipografía</a></li>
+      <li><a href="#composicion" tabindex="-1"><small>05</small>Composición</a></li>
+      <li><a href="#meli" tabindex="-1"><small>06</small>Meli</a></li>
+      <li><a href="#merch" tabindex="-1"><small>07</small>Merch</a></li>
+    </ul>
+  </div>
+</nav>
+
 <!-- HERO -->
 <header id="inicio" class="hero">
   <div class="wrap">
@@ -160,19 +208,18 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       </div>
       <div class="hero-art" id="heroArt">
         <img class="hero-img" src="img/edificio.png" alt="Edificio con columnas de colores y jardines colgantes">
-        <canvas id="heroDots" aria-hidden="true"></canvas>
-        <span class="hero-hint">Mueve el cursor sobre el edificio · clic para dispersar</span>
+        <span class="hero-hint">Mueve el cursor por la página · clic para dispersar</span>
       </div>
     </div>
 
-    <nav class="index" aria-label="Secciones del manual">
+    <nav class="index" id="indexNav" aria-label="Índice del manual">
       <a class="idx" href="#logotipo"><span class="n">01</span><span class="t">Logotipo<span class="dot">.</span></span><span class="d">Estructura, usos incorrectos, procesos, co-branding, acreditación</span></a>
-      <a class="idx" href="#color"><span class="n">02</span><span class="t">Color<span class="dot">.</span></span><span class="d">Primarios, extensiones y Ean Virtual</span></a>
-      <a class="idx" href="#tipografia"><span class="n">03</span><span class="t">Tipografía<span class="dot">.</span></span><span class="d">Mikro y Poppins</span></a>
-      <a class="idx" href="#composicion"><span class="n">04</span><span class="t">Composición<span class="dot">.</span></span><span class="d">Retícula 1:1 y 16:9</span></a>
-      <a class="idx" href="#meli"><span class="n">05</span><span class="t">Meli<span class="dot">.</span></span><span class="d">Construcción, versiones, stickers, Meli Virtual</span></a>
-      <a class="idx" href="#merch"><span class="n">06</span><span class="t">Merch<span class="dot">.</span></span><span class="d">Agendas, accesorios y ropa</span></a>
-      <a class="idx" href="#recursos"><span class="n">07</span><span class="t">Recursos<span class="dot">.</span></span><span class="d">Descarga el logo en PNG, SVG y PDF</span></a>
+      <a class="idx" href="#recursos"><span class="n">02</span><span class="t">Recursos<span class="dot">.</span></span><span class="d">Logos, subprocesos y fuentes para descargar</span></a>
+      <a class="idx" href="#color"><span class="n">03</span><span class="t">Color<span class="dot">.</span></span><span class="d">Primarios, extensiones y Ean Virtual</span></a>
+      <a class="idx" href="#tipografia"><span class="n">04</span><span class="t">Tipografía<span class="dot">.</span></span><span class="d">Mikro y Poppins</span></a>
+      <a class="idx" href="#composicion"><span class="n">05</span><span class="t">Composición<span class="dot">.</span></span><span class="d">Retícula 1:1 y 16:9</span></a>
+      <a class="idx" href="#meli"><span class="n">06</span><span class="t">Meli<span class="dot">.</span></span><span class="d">Construcción, versiones, stickers, Meli Virtual</span></a>
+      <a class="idx" href="#merch"><span class="n">07</span><span class="t">Merch<span class="dot">.</span></span><span class="d">Agendas, accesorios y ropa</span></a>
     </nav>
   </div>
 </header>
@@ -230,7 +277,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     </div>
 
     <div class="grid g3">
-      <figure class="box"><h3 style="font-size:22px">QS Stars</h3><img src="img/qs.jpg" alt="Uso correcto del sello QS Stars e insignias" loading="lazy"><figcaption>El sello QS acompaña al logosímbolo o al claim, separado por línea divisoria y con 4x de área segura.</figcaption></figure>
+      <figure class="box"><h3 style="font-size:22px">QS Stars</h3><img src="img/qs.jpg" alt="Uso correcto del sello QS Stars e insignias" loading="lazy"><figcaption>El sello QS acompaña al logosímbolo o al slogan, separado por línea divisoria y con 4x de área segura.</figcaption></figure>
       <figure class="box"><h3 style="font-size:22px">Co-branding</h3><img src="img/cobranding.jpg" alt="Ejemplos de co-branding con aliados" loading="lazy"><figcaption>Con aliados, el logosímbolo Ean va a la izquierda y la marca aliada a la derecha, separados por línea divisoria.</figcaption></figure>
       <figure class="box"><h3 style="font-size:22px">Acreditación</h3><img src="img/acreditacion.jpg" alt="Logosímbolo con texto de acreditación en alta calidad" loading="lazy"><figcaption>Acreditada en Alta Calidad · res. Nº 023654 del Mineducación 10/12/21, vigencia 10/12/27. Versión horizontal o vertical.</figcaption></figure>
     </div>
@@ -252,22 +299,52 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
         </ul>
       </div>
       <figure class="box">
-        <div class="stack"><span class="eyebrow">Cierre de piezas</span><h3>Claim</h3></div>
-        <img src="img/claim.jpg" alt="Claim Somos la U. del emprendimiento sostenible en positivo, negativo y aplicaciones de cierre" loading="lazy">
+        <div class="stack"><span class="eyebrow">Cierre de piezas</span><h3>Slogan</h3></div>
+        <img src="img/claim.jpg" alt="Slogan Somos la U. del emprendimiento sostenible en positivo, negativo y aplicaciones de cierre" loading="lazy">
         <figcaption>«Somos la U. del emprendimiento sostenible.» Se usa en positivo o negativo y, en el cierre de piezas, acompañado del sello QS.</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- 02 COLOR -->
+<!-- 02 RECURSOS -->
+<section id="recursos" class="sec">
+  <div class="wrap" style="gap:40px">
+    <div class="sec-head">
+      <div><span class="sec-num">02</span><h2>Recursos<span class="dot">.</span></h2></div>
+      <p>Descarga las versiones oficiales del logo, los subprocesos y las fuentes. PNG con fondo transparente en alta resolución para digital; SVG y PDF vectoriales para impresión y diseño.</p>
+    </div>
+    <div class="box" style="border-radius:56px 0 56px 0;gap:36px">
+      <div class="dltools">
+        <div style="display:flex;align-items:center;gap:14px">
+          <span class="dlicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span>
+          <span class="stack" style="gap:2px"><span style="font-size:22px;font-weight:700">Descarga de logos</span><span class="muted" style="font-size:13px">Elige la versión; la descarga entrega exactamente la que ves.</span></span>
+        </div>
+        <div class="stack" style="gap:6px">
+          <span class="eyebrow">Ver todos en</span>
+          <div class="seg" id="dlGlobal" role="group" aria-label="Versión para todos los logos"></div>
+        </div>
+      </div>
+      <div class="dlgroup"><h3>Logos institucionales</h3><div class="dlgrid" id="dlGridInst"></div></div>
+      <div class="dlgroup"><h3>Subprocesos y productos</h3><div class="dlgrid" id="dlGridSub"></div></div>
+      <div class="dlgroup" id="fuentes"><h3>Fuentes</h3><div class="dlgrid" id="dlGridFonts"></div></div>
+      <span class="muted" style="font-size:13px">Respeta el área segura y los usos correctos al aplicarlos. Usa la versión en blanco solo sobre fondos oscuros.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 03 COLOR -->
 <section id="color" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">02</span><h2>Color<span class="dot">.</span></h2></div>
+      <div><span class="sec-num">03</span><h2>Color<span class="dot">.</span></h2></div>
       <p>Busca el equilibrio visual armonioso: 60 % color dominante (fondos y secciones), 30 % secundario (cuerpo de textos y acentos) y 10 % acento (titulares, CTA e iconos). Esta fórmula garantiza contraste y evita espacios sobrecargados.</p>
     </div>
     <div class="stack" style="gap:12px">
+      <div class="stack" style="gap:6px;margin-bottom:8px">
+        <h3 style="margin:0;font-size:24px;font-weight:700">Proporción 60 · 30 · 10 para diseños institucionales</h3>
+        <p class="muted" style="margin:0;font-size:15px;line-height:1.6;max-width:720px">Estos porcentajes aplican a piezas y diseños institucionales. No aplican a piezas de pauta.</p>
+      </div>
       <div class="ratio" role="img" aria-label="Proporción 60 por ciento blanco, 30 por ciento verde, 10 por ciento negro">
         <div style="flex:60;background:#FFFFFF;color:var(--ink)">60%</div>
         <div style="flex:30;background:var(--green);color:var(--ink)">30%</div>
@@ -291,22 +368,22 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   </div>
 </section>
 
-<!-- 03 TIPOGRAFÍA -->
+<!-- 04 TIPOGRAFÍA -->
 <section id="tipografia" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">03</span><h2>Tipografía<span class="dot">.</span></h2></div>
+      <div><span class="sec-num">04</span><h2>Tipografía<span class="dot">.</span></h2></div>
       <p>Mikro es una sans serif que refleja la cercanía, solidez, empatía y modernidad de nuestra marca. La usamos de manera consistente en presentaciones, comunicaciones y piezas gráficas. Poppins es la fuente complementaria.</p>
     </div>
     <div class="grid g2">
       <div class="box dark">
         <div class="row" style="justify-content:space-between;align-items:baseline;gap:12px"><span class="eyebrow" style="color:var(--grey-dot)">Fuente de la marca</span><span style="font-size:13px;color:var(--grey-dot)">lettersfromsweden.se</span></div>
-        <span class="bigname" style="font-weight:900">Mikro<span class="dot">.</span></span>
+        <span class="bigname mikro" style="font-weight:900">Mikro<span class="dot">.</span></span>
         <div class="stack" style="gap:14px;border-top:1px solid var(--ink-3);padding-top:20px">
           <span style="font-size:13px;color:var(--grey-dot)">Mikro Bold</span>
-          <span class="specimen" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+          <span class="specimen mikro" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
           <span style="font-size:13px;color:var(--grey-dot);margin-top:8px">Mikro Black</span>
-          <span class="specimen" style="font-weight:900">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+          <span class="specimen mikro" style="font-weight:900">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
         </div>
       </div>
       <div class="box">
@@ -315,6 +392,8 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
         <div class="stack" style="gap:14px;border-top:1px solid var(--line);padding-top:20px">
           <span style="font-size:13px;color:var(--mute)">Poppins Regular</span>
           <span class="specimen" style="font-weight:400">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
+          <span style="font-size:13px;color:var(--mute);margin-top:8px">Poppins Medium</span>
+          <span class="specimen" style="font-weight:500">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
           <span style="font-size:13px;color:var(--mute);margin-top:8px">Poppins Bold</span>
           <span class="specimen" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
         </div>
@@ -323,30 +402,33 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     <div class="box alt" style="border-radius:0 56px 0 56px">
       <div class="sec-head" style="gap:20px">
         <div class="stack" style="gap:6px"><span class="eyebrow">Probador</span><span style="font-size:22px;font-weight:700">Escribe tu titular</span></div>
-        <div class="row" id="weightOpts"></div>
+        <div class="row" style="gap:16px">
+          <div class="stack" style="gap:6px"><span class="eyebrow">Fuente</span><div class="row" id="fontOpts"></div></div>
+          <div class="stack" style="gap:6px"><span class="eyebrow">Peso</span><div class="row" id="weightOpts"></div></div>
+        </div>
       </div>
       <div class="row" style="gap:20px;align-items:center">
         <label class="field" for="typeText" style="flex:999 1 320px">Texto<input type="text" id="typeText" value="Somos la U. del emprendimiento sostenible."></label>
         <label class="field" for="typeSize" style="flex:1 1 220px"><span>Tamaño · <b id="sizeLbl">64 px</b></span><input type="range" id="typeSize" min="24" max="128" step="2" value="64"></label>
       </div>
-      <div class="preview"><span id="typePrev" style="font-size:64px;font-weight:900">Somos la U. del emprendimiento sostenible.</span></div>
-      <span style="font-size:12px;color:var(--mute)">Vista web con Poppins; en piezas gráficas los titulares se componen en Mikro Bold y Mikro Black.</span>
+      <div class="preview"><span id="typePrev" class="mikro" style="font-size:64px;font-weight:900">Somos la U. del emprendimiento sostenible.</span></div>
+      <span style="font-size:12px;color:var(--mute)">Mikro Bold y Mikro Black para titulares; Poppins para textos complementarios. <a href="#fuentes" style="color:var(--ink)">Descargar fuentes</a></span>
     </div>
   </div>
 </section>
 
-<!-- 04 COMPOSICIÓN -->
+<!-- 05 COMPOSICIÓN -->
 <section id="composicion" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">04</span><h2>Composición<span class="dot">.</span></h2></div>
+      <div><span class="sec-num">05</span><h2>Composición<span class="dot">.</span></h2></div>
       <p>La composición es la organización estratégica de elementos visuales dentro de un espacio, para transmitir un mensaje claro y generar una experiencia visual efectiva: imágenes, texto, color y tipografía dispuestos para lograr el impacto deseado.</p>
     </div>
     <div class="rules">
       <div><b>Logotipo</b><span>Ya sea de procesos, acreditación o co-branding, va en la parte superior del formato: izquierda, centro o derecha.</span></div>
       <div><b>Imagen</b><span>Abarca el 100 % del formato, con un foco central.</span></div>
       <div><b>Texto y CTA</b><span>El texto acompaña la imagen; el CTA se ubica en la zona inferior.</span></div>
-      <div><b>Claim de cierre</b><span>Cierra la pieza en la parte inferior.</span></div>
+      <div><b>Slogan de cierre</b><span>Cierra la pieza en la parte inferior.</span></div>
     </div>
     <div class="grid g2" style="align-items:start">
       <figure class="box"><img src="img/reticula-1.jpg" alt="Retícula de composición para formato 1:1" loading="lazy"><figcaption style="font-weight:600;color:var(--ink)">Formato 1:1</figcaption></figure>
@@ -355,11 +437,11 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   </div>
 </section>
 
-<!-- 05 MELI -->
+<!-- 06 MELI -->
 <section id="meli" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">05</span><h2>Meli<span class="dot">.</span></h2></div>
+      <div><span class="sec-num">06</span><h2>Meli<span class="dot">.</span></h2></div>
       <p>Nuestra mascota. Respeta su construcción y proporciones, y usa solo las versiones, stickers y modelos aprobados.</p>
     </div>
     <div class="row" role="tablist" aria-label="Meli" id="meliTabs"></div>
@@ -368,35 +450,15 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   </div>
 </section>
 
-<!-- 06 MERCH -->
+<!-- 07 MERCH -->
 <section id="merch" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">06</span><h2>Merch<span class="dot">.</span></h2></div>
+      <div><span class="sec-num">07</span><h2>Merch<span class="dot">.</span></h2></div>
       <p>Aplicaciones de la marca en agendas, accesorios y ropa: referencias de estilo para producir piezas coherentes con la identidad.</p>
     </div>
     <div class="row" role="tablist" aria-label="Merch" id="merchTabs"></div>
     <div class="grid" id="merchGrid" style="grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));align-items:start"></div>
-  </div>
-</section>
-
-<!-- 07 RECURSOS -->
-<section id="recursos" class="sec">
-  <div class="wrap" style="gap:40px">
-    <div class="sec-head">
-      <div><span class="sec-num">07</span><h2>Recursos<span class="dot">.</span></h2></div>
-      <p>Descarga las variantes oficiales del logo. PNG con fondo transparente en alta resolución para digital; SVG y PDF vectoriales para impresión y diseño.</p>
-    </div>
-    <div class="box" style="border-radius:56px 0 56px 0;gap:28px">
-      <div class="sec-head" style="align-items:center;gap:16px">
-        <div style="flex-direction:row;align-items:center;gap:14px">
-          <span class="dlicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></span>
-          <span class="stack" style="gap:2px"><span style="font-size:22px;font-weight:700">Descarga de logos</span><span class="muted" style="font-size:13px">6 variantes · positivo</span></span>
-        </div>
-        <span class="muted" style="font-size:13px;max-width:none">Respeta el área segura y los usos correctos al aplicarlos.</span>
-      </div>
-      <div class="dlgrid" id="dlGrid"></div>
-    </div>
   </div>
 </section>
 
@@ -412,77 +474,98 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 
 <style>.box.dark .bullets li.g::before{background:var(--green);width:6px;height:6px;margin-top:8px}</style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function(){
   const $ = (id) => document.getElementById(id);
   const h = (tag, attrs, kids) => { const el = document.createElement(tag); if (attrs) for (const k in attrs) { if (k === 'text') el.textContent = attrs[k]; else if (k === 'on') { for (const ev in attrs.on) el.addEventListener(ev, attrs.on[ev]); } else if (k === 'style') el.style.cssText = attrs[k]; else el.setAttribute(k, attrs[k]); } (kids || []).forEach(c => c && el.appendChild(c)); return el; };
   const pills = (box, opts, current, onPick, roleTab) => { box.replaceChildren(...opts.map(o => { const b = h('button', { type: 'button', class: 'pill' }); if (roleTab) { b.setAttribute('role', 'tab'); b.setAttribute('aria-selected', String(o.id === current)); } else b.setAttribute('aria-pressed', String(o.id === current)); if (o.hex) b.appendChild(h('span', { class: 'chip', style: 'background:' + o.hex })); b.appendChild(document.createTextNode(o.label)); b.addEventListener('click', () => onPick(o.id)); return b; })); };
 
-  /* ---------- Hero: los 21 puntos del símbolo ---------- */
+  /* ---------- Los 21 puntos del símbolo: viven sobre el edificio y siguen al cursor por toda la página ---------- */
   (function(){
     const art = $('heroArt'), cv = $('heroDots'), ctx = cv.getContext('2d');
-    // Posiciones de los 21 puntos del símbolo (unidades del archivo vectorial, centro 631,556)
     const RAW = [[182,71],[406,71],[855,71],[1079,71],[70,265],[294,265],[967,265],[1191,265],[182,459],[1079,459],[70,653],[294,653],[967,653],[1191,653],[182,847],[406,847],[630,847],[855,847],[1079,847],[518,1041],[742,1041]];
     const BASE = RAW.map(p => [p[0] - 631, p[1] - 556]);
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SIZE = 0.294912; // tamaño de los puntos (reducido en varios ajustes)
     let W = 0, H = 0, dpr = 1, S = 1, R = 6;
-    const dots = BASE.map((b, i) => ({ x: 0, y: 0, vx: 0, vy: 0, k: 0.018 + (i % 7) * 0.004, b }));
+    const dots = BASE.map((b, i) => { const a = (i * 2.399963) % (Math.PI * 2); return { x: 0, y: 0, vx: 0, vy: 0, k: 0.0065 + (i % 7) * 0.002, sx: Math.cos(a) * (0.6 + (i % 5) * 0.2), sy: Math.sin(a) * (0.6 + (i % 5) * 0.2), b }; });
     const ptr = { x: 0, y: 0, on: false, px: 0, py: 0 };
     const anchor = { x: 0, y: 0 };
-    let t = 0, running = false, visible = true, raf = 0, inited = false;
+    let t = 0, running = false, raf = 0, inited = false, settleUntil = 0, speed = 0;
+    const home = () => { const r = art.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width, h: r.height }; };
     function size(){
-      const r = art.getBoundingClientRect(); dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = r.width; H = r.height; if (!W || !H) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-      S = Math.min(W, H) * 0.42 / 1263; R = Math.max(4, 50 * S);
-      if (!inited) { anchor.x = W / 2; anchor.y = H / 2; dots.forEach(d => { d.x = anchor.x + d.b[0] * S; d.y = anchor.y + d.b[1] * S; }); inited = true; }
-      if (!running) draw();
+      const hm = home();
+      S = Math.min(hm.w, hm.h) * 0.42 * 0.7 * 0.8 / 1263; // tamaño del símbolo armado R = Math.max(1.1, 50 * S * SIZE);
+      if (!inited && hm.w) { anchor.x = hm.x; anchor.y = hm.y; dots.forEach(d => { d.x = anchor.x + d.b[0] * S; d.y = anchor.y + d.b[1] * S; }); inited = true; }
+      draw(); start();
     }
     function step(){
       t += 1;
-      // Ancla: deriva suave en reposo, sigue al cursor cuando está encima
-      const tx = ptr.on ? ptr.x : W / 2 + Math.sin(t * 0.006) * W * 0.12;
-      const ty = ptr.on ? ptr.y : H / 2 + Math.sin(t * 0.0045 + 1) * H * 0.10;
-      anchor.x += (tx - anchor.x) * (ptr.on ? 0.12 : 0.03);
-      anchor.y += (ty - anchor.y) * (ptr.on ? 0.12 : 0.03);
+      const hm = home();
+      // En reposo vuelven al edificio (con una deriva suave); con el cursor, lo siguen a cualquier parte
+      const tx = ptr.on ? ptr.x : hm.x + Math.sin(t * 0.006) * hm.w * 0.12;
+      const ty = ptr.on ? ptr.y : hm.y + Math.sin(t * 0.0045 + 1) * hm.h * 0.10;
+      // Leve retraso: el grupo alcanza al cursor poco a poco
+      anchor.x += (tx - anchor.x) * (ptr.on ? 0.03 : 0.03);
+      anchor.y += (ty - anchor.y) * (ptr.on ? 0.03 : 0.03);
       const rot = Math.sin(t * 0.004) * 0.35 + (ptr.on ? (ptr.x - W / 2) / W * 0.6 : 0);
       const sc = ptr.on ? 0.9 + Math.sin(t * 0.05) * 0.04 : 1 + Math.sin(t * 0.02) * 0.05;
       const c = Math.cos(rot), s = Math.sin(rot);
       const pvx = ptr.x - ptr.px, pvy = ptr.y - ptr.py; ptr.px = ptr.x; ptr.py = ptr.y;
+      // Cuanto más rápido se mueve el cursor, más se dispersan; al detenerse se reorganizan
+      speed += (Math.min(Math.hypot(pvx, pvy), 60) - speed) * 0.08;
+      const spread = Math.min(1, speed / 18);
       const minD = R * 2.6, push = R * 5;
+      // Fuera del edificio y sin cursor no se fuerzan los bordes: así acompañan al edificio cuando sale de la pantalla
+      const bound = ptr.on;
       for (let i = 0; i < dots.length; i++) {
         const d = dots[i];
-        const bx = d.b[0] * S * sc, by = d.b[1] * S * sc;
+        const sc2 = sc * (1 + spread * 1.4);
+        const bx = d.b[0] * S * sc2 + d.sx * spread * R * 14, by = d.b[1] * S * sc2 + d.sy * spread * R * 14;
         const gx = anchor.x + bx * c - by * s, gy = anchor.y + bx * s + by * c;
-        let fx = (gx - d.x) * d.k, fy = (gy - d.y) * d.k;
-        // Se afectan entre sí: repulsión suave entre puntos cercanos
+        const kk = d.k * (1 - spread * 0.55);
+        let fx = (gx - d.x) * kk, fy = (gy - d.y) * kk;
         for (let j = 0; j < dots.length; j++) { if (j === i) continue; const o = dots[j]; const dx = d.x - o.x, dy = d.y - o.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < minD) { const f = (minD - dd) / minD * 0.6; fx += dx / dd * f; fy += dy / dd * f; } }
-        // El cursor los aparta y los arrastra con su movimiento
         if (ptr.on) { const dx = d.x - ptr.x, dy = d.y - ptr.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < push) { const f = (push - dd) / push; fx += dx / dd * f * 2.2 + pvx * f * 0.25; fy += dy / dd * f * 2.2 + pvy * f * 0.25; } }
-        d.vx = (d.vx + fx) * 0.86; d.vy = (d.vy + fy) * 0.86;
+        d.vx = (d.vx + fx) * 0.9; d.vy = (d.vy + fy) * 0.9;
         d.x += d.vx; d.y += d.vy;
-        // Rebote suave en los bordes de la imagen
-        if (d.x < R) { d.x = R; d.vx *= -0.6; } if (d.x > W - R) { d.x = W - R; d.vx *= -0.6; }
-        if (d.y < R) { d.y = R; d.vy *= -0.6; } if (d.y > H - R) { d.y = H - R; d.vy *= -0.6; }
+        if (bound) {
+          if (d.x < R) { d.x = R; d.vx *= -0.6; } if (d.x > W - R) { d.x = W - R; d.vx *= -0.6; }
+          if (d.y < R) { d.y = R; d.vy *= -0.6; } if (d.y > H - R) { d.y = H - R; d.vy *= -0.6; }
+        }
       }
     }
     function draw(){
       if (!W || !H) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = '#151617';
-      for (const d of dots) { ctx.beginPath(); ctx.arc(d.x, d.y, R, 0, Math.PI * 2); ctx.fill(); }
+      for (const d of dots) { if (d.x < -R || d.y < -R || d.x > W + R || d.y > H + R) continue; ctx.beginPath(); ctx.arc(d.x, d.y, R, 0, Math.PI * 2); ctx.fill(); }
     }
-    function loop(){ if (!running) return; step(); draw(); raf = requestAnimationFrame(loop); }
-    function start(){ if (reduce || running || !visible) return; running = true; raf = requestAnimationFrame(loop); }
-    function stop(){ running = false; cancelAnimationFrame(raf); }
-    const local = e => { const r = art.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-    art.addEventListener('pointermove', e => { const p = local(e); if (!ptr.on) { ptr.px = p[0]; ptr.py = p[1]; } ptr.x = p[0]; ptr.y = p[1]; ptr.on = true; art.classList.add('touched'); });
-    art.addEventListener('pointerleave', () => { ptr.on = false; });
-    art.addEventListener('pointerdown', e => { const p = local(e); art.classList.add('touched'); for (const d of dots) { const dx = d.x - p[0], dy = d.y - p[1]; const dd = Math.hypot(dx, dy) || 1; const f = 18 * Math.max(0.3, 1 - dd / Math.max(W, H)); d.vx += dx / dd * f; d.vy += dy / dd * f; } });
-    if ('ResizeObserver' in window) new ResizeObserver(size).observe(art); else window.addEventListener('resize', size);
-    if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(art);
-    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
-    size(); start();
+    function loop(){
+      if (!running) return;
+      if (document.hidden || (reduce && !ptr.on && performance.now() > settleUntil)) { running = false; return; }
+      step(); draw(); raf = requestAnimationFrame(loop);
+    }
+    function start(){ if (running || document.hidden || !W) return; if (reduce && !ptr.on && performance.now() > settleUntil) return; running = true; raf = requestAnimationFrame(loop); }
+    const release = () => { ptr.on = false; settleUntil = performance.now() + 2500; start(); };
+    window.addEventListener('pointermove', e => { if (!ptr.on) { ptr.px = e.clientX; ptr.py = e.clientY; } ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; art.classList.add('touched'); start(); }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', release);
+    window.addEventListener('blur', release);
+    window.addEventListener('pointercancel', release);
+    window.addEventListener('pointerdown', e => {
+      art.classList.add('touched');
+      for (const d of dots) { const dx = d.x - e.clientX, dy = d.y - e.clientY; const dd = Math.hypot(dx, dy) || 1; const f = 18 * Math.max(0.3, 1 - dd / Math.max(W, H)); d.vx += dx / dd * f; d.vy += dy / dd * f; }
+      settleUntil = performance.now() + 2500; start();
+    }, { passive: true });
+    window.addEventListener('scroll', () => { if (reduce) { settleUntil = performance.now() + 600; start(); } }, { passive: true });
+    window.addEventListener('resize', size);
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(art);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
+    size();
   })();
 
   /* ---------- Logo ---------- */
@@ -571,9 +654,18 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   renderColor();
 
   /* ---------- Tipografía ---------- */
-  const W = [{ id: 400, label: 'Regular' }, { id: 700, label: 'Bold' }, { id: 900, label: 'Black' }];
-  let weight = 900;
-  function renderType(){ pills($('weightOpts'), W, weight, id => { weight = id; $('typePrev').style.fontWeight = id; renderType(); }); }
+  const FONTS = [
+    { id: 'mikro', label: 'Mikro', family: "'Mikro', var(--font)", weights: [{ id: 700, label: 'Bold' }, { id: 900, label: 'Black' }] },
+    { id: 'poppins', label: 'Poppins', family: 'var(--font)', weights: [{ id: 400, label: 'Regular' }, { id: 500, label: 'Medium' }, { id: 700, label: 'Bold' }] }
+  ];
+  let font = 'mikro', weight = 900;
+  function renderType(){
+    const f = FONTS.find(x => x.id === font);
+    if (!f.weights.some(w => w.id === weight)) weight = f.weights[f.weights.length - 1].id;
+    const prev = $('typePrev'); prev.classList.remove('mikro'); prev.style.fontFamily = f.family; prev.style.fontWeight = weight;
+    pills($('fontOpts'), FONTS, font, id => { font = id; renderType(); });
+    pills($('weightOpts'), f.weights, weight, id => { weight = id; renderType(); });
+  }
   $('typeText').addEventListener('input', e => { $('typePrev').textContent = e.target.value || ' '; });
   $('typeSize').addEventListener('input', e => { $('typePrev').style.fontSize = e.target.value + 'px'; $('sizeLbl').textContent = e.target.value + ' px'; });
   renderType();
@@ -600,43 +692,71 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   renderMerch();
 
   /* ---------- Descargas ---------- */
-  const DL = [
-    ['ean-logosimbolo-horizontal', 'Logosímbolo horizontal', 'Versión principal: símbolo y logotipo.', ['png','svg','pdf']],
-    ['ean-logosimbolo-vertical', 'Logosímbolo vertical', 'Símbolo sobre el logotipo.', ['png','svg','pdf']],
-    ['ean-logosimbolo-descriptor-izquierda', 'Horizontal con descriptor', 'Descriptor universidad a la izquierda.', ['png','svg','pdf']],
-    ['ean-claim-qs', 'Claim con sello QS', 'Somos la U. del emprendimiento sostenible, tres versiones.', ['png','pdf']],
-    ['ean-acreditacion', 'Acreditación en Alta Calidad', 'Logosímbolo con texto de acreditación.', ['png','svg','pdf']],
-    ['ean-vigilada-mineducacion', 'Vigilada MinEducación', 'Sello horizontal obligatorio.', ['png','svg','pdf']]
+  const VLABEL = { color: 'Color', negro: 'Negro', blanco: 'Blanco' };
+  const DL_INST = [
+    ['ean-logosimbolo-horizontal', 'Logosímbolo horizontal', 'Versión principal: símbolo y logotipo.', ['negro','blanco']],
+    ['ean-logosimbolo-vertical', 'Logosímbolo vertical', 'Símbolo sobre el logotipo.', ['negro','blanco']],
+    ['ean-logosimbolo-descriptor-izquierda', 'Horizontal con descriptor', 'Descriptor universidad a la izquierda.', ['negro','blanco']],
+    ['ean-slogan-qs', 'Slogan con sello QS', 'Somos la U. del emprendimiento sostenible, con sello QS Rated Excellent.', ['color','negro','blanco']],
+    ['ean-acreditacion', 'Acreditación en Alta Calidad', 'Logosímbolo con texto de acreditación.', ['negro','blanco']],
+    ['ean-vigilada-mineducacion', 'Vigilada MinEducación', 'Sello horizontal obligatorio.', ['negro','blanco']]
+  ];
+  const DL_SUB = [
+    ['ean-educacion-continua', 'Educación continua', 'Lockup de proceso.', ['negro','blanco']],
+    ['ean-virtual', 'Ean Virtual', 'Lockup de proceso.', ['negro','blanco']],
+    ['ean-facultad-administracion-finanzas', 'Facultad de Administración, Finanzas y Ciencias Económicas', 'Lockup de facultad.', ['negro','blanco']],
+    ['ean-facultad-ingenieria', 'Facultad de Ingeniería', 'Lockup de facultad.', ['negro','blanco']],
+    ['ean-facultad-humanidades', 'Facultad de Humanidades', 'Lockup de facultad.', ['negro','blanco']],
+    ['ean-empresas', 'Ean Empresas', 'Lockup de proceso.', ['negro','blanco']],
+    ['ean-impacta', 'Impacta', 'Emprendimiento sostenible.', ['color','negro','blanco']],
+    ['ean-a-tu-lado', 'Ean a tu lado', 'Lockup de producto.', ['negro','blanco']],
+    ['ean-assesment-center', 'Assesment Center', 'Lockup de producto.', ['color','negro','blanco']],
+    ['ean-humanise', 'Humanise', 'Lockup de producto.', ['color','negro','blanco']],
+    ['ean-x', 'Ean X', 'Marca con símbolo en color.', ['color','negro','blanco']]
+  ];
+  const FONT_DL = [
+    ['Mikro.zip', 'Mikro', 'Fuente de la marca · Bold y Black (.otf).', "'Mikro', var(--font)", 900, ['Mikro-Bold.otf', 'Mikro-Black.otf']],
+    ['Poppins.zip', 'Poppins', 'Fuente complementaria · Regular, Medium y Bold (.ttf).', 'var(--font)', 600, ['Poppins-Regular.ttf', 'Poppins-Medium.ttf', 'Poppins-Bold.ttf']]
   ];
   let dlNs = null, dlTried = false;
   const dlReady = (async () => { try { if (window.claude && window.claude.use) dlNs = await window.claude.use('downloads'); } catch (e) { dlNs = null; } dlTried = true; return dlNs; })();
   let busy = false;
-  const fileUrl = file => new URL('recursos/' + file, location.href).href;
+  const fileUrl = file => new URL(file, location.href).href;
   function fallback(msgEl, file, why){
+    if (file.indexOf('fuentes/') === 0) { msgEl.textContent = why; return; }
     msgEl.replaceChildren(
       document.createTextNode(why + ' '),
-      h('a', { href: fileUrl(file), target: '_blank', rel: 'noopener', style: 'color:var(--ink);font-weight:600', text: 'Abrir ' + file }),
+      h('a', { href: fileUrl(file), target: '_blank', rel: 'noopener', style: 'color:var(--ink);font-weight:600', text: 'Abrir ' + file.split('/').pop() }),
       document.createTextNode(' y guárdalo con clic derecho › Guardar como.')
     );
   }
-  async function doDownload(file, msgEl, btns){
-    if (busy) { msgEl.textContent = 'Espera a que termine la descarga en curso.'; return; }
+  async function doDownload(file, msgEl, btns, makeBlob){
     if (!(window.claude && window.claude.use)) {
-      const a = document.createElement('a'); a.href = fileUrl(file); a.download = file; a.style.display = 'none';
-      document.body.appendChild(a); a.click(); a.remove();
-      msgEl.textContent = 'Descargado: ' + file; return;
+      const name = file.split('/').pop();
+      try {
+        msgEl.textContent = 'Preparando ' + name + '…';
+        const blob = makeBlob ? await makeBlob() : null;
+        const href = blob ? URL.createObjectURL(blob) : fileUrl(file);
+        const el = document.createElement('a'); el.href = href; el.download = name; el.style.display = 'none';
+        document.body.appendChild(el); el.click(); el.remove();
+        if (blob) setTimeout(() => URL.revokeObjectURL(href), 5000);
+        msgEl.textContent = 'Descargado: ' + name;
+      } catch (e) { msgEl.textContent = 'No se pudo descargar. Inténtalo de nuevo.'; }
+      return;
     }
+    if (busy) { msgEl.textContent = 'Espera a que termine la descarga en curso.'; return; }
     busy = true; btns.forEach(b => b.disabled = true);
-    msgEl.textContent = 'Preparando ' + file + '…';
+    const name = file.split('/').pop();
+    msgEl.textContent = 'Preparando ' + name + '…';
     try {
       const ns = dlTried ? dlNs : await Promise.race([dlReady, new Promise(r => setTimeout(() => r(null), 4000))]);
       if (!ns || typeof ns.save !== 'function') { fallback(msgEl, file, 'La descarga directa no está disponible en esta vista.'); return; }
       let blob;
-      try { const res = await fetch('recursos/' + file); if (!res.ok) throw new Error('HTTP ' + res.status); blob = await res.blob(); }
+      try { if (makeBlob) blob = await makeBlob(); else { const res = await fetch(file); if (!res.ok) throw new Error('HTTP ' + res.status); blob = await res.blob(); } }
       catch (e) { console.warn('[descargas] fetch', e); fallback(msgEl, file, 'No se pudo preparar el archivo.'); return; }
       msgEl.textContent = 'Confirma la descarga en la ventana que aparece.';
-      await ns.save({ filename: file, data: blob });
-      msgEl.textContent = 'Descargado: ' + file;
+      await ns.save({ filename: name, data: blob });
+      msgEl.textContent = 'Descargado: ' + name;
     } catch (e) {
       const c = e && e.code;
       console.warn('[descargas] save', c, e && e.message);
@@ -645,18 +765,75 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       else fallback(msgEl, file, 'No se pudo descargar aquí' + (c ? ' (' + c + ').' : '.'));
     } finally { busy = false; btns.forEach(b => b.disabled = false); }
   }
-  $('dlGrid').replaceChildren(...DL.map(d => {
+  const cards = [];
+  function logoCard(d){
+    const id = d[0], name = d[1], vers = d[3];
+    const st = { v: vers[0] };
     const msg = h('span', { class: 'dlmsg', 'aria-live': 'polite' });
-    const btns = d[3].map(ext => h('button', { type: 'button', class: 'dlbtn', 'aria-label': 'Descargar ' + d[1] + ' en ' + ext.toUpperCase(), text: ext.toUpperCase() }));
-    btns.forEach((b, i) => b.addEventListener('click', () => doDownload(d[0] + '.' + d[3][i], msg, btns)));
+    const img = h('img', { alt: name, loading: 'lazy' });
+    const prev = h('div', { class: 'dlprev' }, [img]);
+    const vbox = h('div', { class: 'vers', role: 'group', 'aria-label': 'Versión de ' + name });
+    const exts = vers[0] === 'color' && vers.length === 1 ? ['png', 'svg', 'pdf'] : ['png', 'svg', 'pdf'];
+    const btns = exts.map(ext => h('button', { type: 'button', class: 'dlbtn', text: ext.toUpperCase() }));
+    function render(){
+      img.src = 'recursos/' + id + '-' + st.v + '.png';
+      img.alt = name + ' · ' + VLABEL[st.v];
+      prev.classList.toggle('dark', st.v === 'blanco');
+      btns.forEach((b, i) => b.setAttribute('aria-label', 'Descargar ' + name + ' ' + VLABEL[st.v].toLowerCase() + ' en ' + exts[i].toUpperCase()));
+      vbox.replaceChildren(...vers.map(v => { const b = h('button', { type: 'button', 'aria-pressed': String(v === st.v), text: VLABEL[v] }); b.addEventListener('click', () => { st.v = v; msg.textContent = ''; render(); }); return b; }));
+    }
+    btns.forEach((b, i) => b.addEventListener('click', () => doDownload('recursos/' + id + '-' + st.v + '.' + exts[i], msg, btns)));
+    render();
+    cards.push({ vers, set: v => { st.v = vers.includes(v) ? v : (v === 'color' ? vers[0] : (vers.includes('negro') ? 'negro' : vers[0])); render(); } });
+    return h('div', { class: 'dlcard' }, [prev, h('div', { class: 'dlbody' }, [
+      h('div', { class: 'stack', style: 'gap:4px' }, [h('span', { style: 'font-size:16px;font-weight:700;line-height:1.3', text: name }), h('span', { class: 'muted', style: 'font-size:13px;line-height:1.5', text: d[2] })]),
+      vbox, h('div', { class: 'dlbtns' }, btns), msg ])]);
+  }
+  $('dlGridInst').replaceChildren(...DL_INST.map(logoCard));
+  $('dlGridSub').replaceChildren(...DL_SUB.map(logoCard));
+  let gv = null;
+  function renderGlobal(){
+    $('dlGlobal').replaceChildren(...[['negro', '#151617'], ['blanco', '#FFFFFF'], ['color', 'conic-gradient(#00bf68,#0033a3,#562b9a,#f9b122,#00bf68)']].map(([v, c]) => {
+      const b = h('button', { type: 'button', 'aria-pressed': String(gv === v) }, [h('span', { class: 'sw-dot', style: 'background:' + c }), document.createTextNode(VLABEL[v])]);
+      b.addEventListener('click', () => { gv = v; cards.forEach(c => c.set(v)); renderGlobal(); });
+      return b;
+    }));
+  }
+  renderGlobal();
+  $('dlGridFonts').replaceChildren(...FONT_DL.map(f => {
+    const msg = h('span', { class: 'dlmsg', 'aria-live': 'polite' });
+    const btn = h('button', { type: 'button', class: 'dlbtn', 'aria-label': 'Descargar fuente ' + f[1] + ' en ZIP', text: 'ZIP' });
+    btn.addEventListener('click', () => doDownload('fuentes/' + f[0], msg, [btn], async () => {
+      if (!window.JSZip) throw new Error('JSZip no disponible');
+      const zip = new JSZip(); const dir = zip.folder(f[1]);
+      for (const name of f[5]) { const r = await fetch('fuentes/' + name); if (!r.ok) throw new Error('HTTP ' + r.status); dir.file(name, await r.arrayBuffer()); }
+      return zip.generateAsync({ type: 'blob' });
+    }));
     return h('div', { class: 'dlcard' }, [
-      h('div', { class: 'dlprev' }, [h('img', { src: 'recursos/' + d[0] + '.png', alt: d[1], loading: 'lazy' })]),
+      h('div', { class: 'fontprev', style: 'font-family:' + f[3] + ';font-weight:' + f[4] }, [document.createTextNode('Aa')]),
       h('div', { class: 'dlbody' }, [
-        h('div', { class: 'stack', style: 'gap:4px' }, [h('span', { style: 'font-size:16px;font-weight:700', text: d[1] }), h('span', { class: 'muted', style: 'font-size:13px;line-height:1.5', text: d[2] })]),
-        h('div', { class: 'dlbtns' }, btns), msg
-      ])
+        h('div', { class: 'stack', style: 'gap:4px' }, [h('span', { style: 'font-size:16px;font-weight:700', text: f[1] }), h('span', { class: 'muted', style: 'font-size:13px;line-height:1.5', text: f[2] })]),
+        h('div', { class: 'dlbtns' }, [btn]), msg ])
     ]);
   }));
+
+  /* ---------- Menú fijo ---------- */
+  (function(){
+    const nav = $('miniNav'), idx = $('indexNav');
+    const links = [...nav.querySelectorAll('a')];
+    const setShown = on => { nav.classList.toggle('show', on); nav.setAttribute('aria-hidden', String(!on)); links.forEach(a => a.tabIndex = on ? 0 : -1); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => { const e = es[0]; setShown(!e.isIntersecting && e.boundingClientRect.top < 0); }).observe(idx);
+      const secs = ['logotipo', 'recursos', 'color', 'tipografia', 'composicion', 'meli', 'merch'].map(id => document.getElementById(id));
+      const vis = new Map();
+      const io = new IntersectionObserver(es => {
+        es.forEach(e => vis.set(e.target.id, e.isIntersecting));
+        const cur = secs.find(s => vis.get(s.id));
+        links.forEach(a => a.setAttribute('aria-current', String(!!cur && a.getAttribute('href') === '#' + cur.id)));
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      secs.forEach(s => io.observe(s));
+    }
+  })();
 })();
 </script>
 
