@@ -488,8 +488,8 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     const BASE = RAW.map(p => [p[0] - 631, p[1] - 556]);
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const SIZE = 0.294912; // tamaño de los puntos (reducido en varios ajustes)
-    let W = 0, H = 0, dpr = 1, S = 1, R = 6; const DOT = 0.672; // radio dibujado de cada punto = R * DOT
-    const dots = BASE.map((b, i) => { const a = (i * 2.399963) % (Math.PI * 2); return { x: 0, y: 0, vx: 0, vy: 0, k: (0.0065 + (i % 7) * 0.002) * 0.8, sx: Math.cos(a) * (0.6 + (i % 5) * 0.2), sy: Math.sin(a) * (0.6 + (i % 5) * 0.2), b }; });
+    let W = 0, H = 0, dpr = 1, S = 1, R = 6; const DOT = 0.5376; // radio dibujado de cada punto = R * DOT
+    const dots = BASE.map((b, i) => { const a = (i * 2.399963) % (Math.PI * 2); return { x: 0, y: 0, vx: 0, vy: 0, k: (0.0065 + (i % 7) * 0.002) * 0.56, sx: Math.cos(a) * (0.6 + (i % 5) * 0.2), sy: Math.sin(a) * (0.6 + (i % 5) * 0.2), b }; });
     const ptr = { x: 0, y: 0, on: false, px: 0, py: 0 };
     const anchor = { x: 0, y: 0 };
     let t = 0, running = false, raf = 0, inited = false, settleUntil = 0, speed = 0;
@@ -499,7 +499,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       W = window.innerWidth; H = window.innerHeight;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       const hm = home();
-      S = Math.min(hm.w, hm.h) * 0.42 * 0.7 * 0.8 * 0.7 / 1263; // tamaño del símbolo armado R = Math.max(1.1, 50 * S * SIZE);
+      S = Math.min(hm.w, hm.h) * 0.42 * 0.7 * 0.8 * 0.7 * 0.8 / 1263; // tamaño del símbolo armado R = Math.max(1.1, 50 * S * SIZE);
       if (!inited && hm.w) { anchor.x = hm.x; anchor.y = hm.y; dots.forEach(d => { d.x = anchor.x + d.b[0] * S; d.y = anchor.y + d.b[1] * S; }); inited = true; }
       draw(); start();
     }
@@ -510,15 +510,17 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       const tx = ptr.on ? ptr.x : hm.x + Math.sin(t * 0.006) * hm.w * 0.12;
       const ty = ptr.on ? ptr.y : hm.y + Math.sin(t * 0.0045 + 1) * hm.h * 0.10;
       // Leve retraso: el grupo alcanza al cursor poco a poco
-      anchor.x += (tx - anchor.x) * (ptr.on ? 0.01 : 0.01);
-      anchor.y += (ty - anchor.y) * (ptr.on ? 0.01 : 0.01);
-      const rot = Math.sin(t * 0.004) * 0.35 + (ptr.on ? (ptr.x - W / 2) / W * 0.6 : 0);
-      const sc = ptr.on ? 0.9 + Math.sin(t * 0.05) * 0.04 : 1 + Math.sin(t * 0.02) * 0.05;
-      const c = Math.cos(rot), s = Math.sin(rot);
+      anchor.x += (tx - anchor.x) * 0.007;
+      anchor.y += (ty - anchor.y) * 0.007;
       const pvx = ptr.x - ptr.px, pvy = ptr.y - ptr.py; ptr.px = ptr.x; ptr.py = ptr.y;
       // Cuanto más rápido se mueve el cursor, más se dispersan; al detenerse se reorganizan
       speed += (Math.min(Math.hypot(pvx, pvy), 60) - speed) * 0.08;
       const spread = Math.min(1, speed / 18);
+      // Al alcanzar el cursor quieto, forman el símbolo original: sin giro, sin pulso y sin empuje del cursor
+      const form = ptr.on ? Math.max(0, 1 - Math.hypot(ptr.x - anchor.x, ptr.y - anchor.y) / 60) * (1 - spread) : 0;
+      const rot = (Math.sin(t * 0.004) * 0.35 + (ptr.on ? (ptr.x - W / 2) / W * 0.6 : 0)) * (1 - form);
+      const sc = ptr.on ? (0.9 + Math.sin(t * 0.05) * 0.04) * (1 - form) + form : 1 + Math.sin(t * 0.02) * 0.05;
+      const c = Math.cos(rot), s = Math.sin(rot);
       const minD = R * DOT * 2.6, push = R * 5;
       // Fuera del edificio y sin cursor no se fuerzan los bordes: así acompañan al edificio cuando sale de la pantalla
       const bound = ptr.on;
@@ -530,7 +532,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
         const kk = d.k * (1 - spread * 0.55);
         let fx = (gx - d.x) * kk, fy = (gy - d.y) * kk;
         for (let j = 0; j < dots.length; j++) { if (j === i) continue; const o = dots[j]; const dx = d.x - o.x, dy = d.y - o.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < minD) { const f = (minD - dd) / minD * 0.6; fx += dx / dd * f; fy += dy / dd * f; } }
-        if (ptr.on) { const dx = d.x - ptr.x, dy = d.y - ptr.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < push) { const f = (push - dd) / push; fx += dx / dd * f * 1.1 + pvx * f * 0.12; fy += dy / dd * f * 1.1 + pvy * f * 0.12; } }
+        if (ptr.on) { const dx = d.x - ptr.x, dy = d.y - ptr.y; const dd = Math.hypot(dx, dy) || 0.01; if (dd < push) { const f = (push - dd) / push * (1 - form); fx += dx / dd * f * 1.1 + pvx * f * 0.12; fy += dy / dd * f * 1.1 + pvy * f * 0.12; } }
         d.vx = (d.vx + fx) * 0.9; d.vy = (d.vy + fy) * 0.9;
         d.x += d.vx; d.y += d.vy;
         if (bound) {
