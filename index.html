@@ -543,7 +543,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       if (!W || !H) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
       ctx.fillStyle = '#151617';
-      for (const d of dots) { if (d.x < -R || d.y < -R || d.x > W + R || d.y > H + R) continue; ctx.beginPath(); ctx.arc(d.x, d.y, R * 0.8, 0, Math.PI * 2); ctx.fill(); }
+      for (const d of dots) { if (d.x < -R || d.y < -R || d.x > W + R || d.y > H + R) continue; ctx.beginPath(); ctx.arc(d.x, d.y, R * 0.56, 0, Math.PI * 2); ctx.fill(); }
     }
     function loop(){
       if (!running) return;
