@@ -35,7 +35,7 @@ section.sec{border-top:1px solid var(--line);scroll-margin-top:56px}
 @font-face{font-family:'Mikro';src:url('fonts/web/Mikro-Black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
 .mikro{font-family:'Mikro', var(--font)}
 /* Menú fijo compacto */
-.mininav{position:fixed;top:env(safe-area-inset-top, 0px);left:0;right:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .22s var(--ease)}
+.mininav{position:fixed;top:env(safe-area-inset-top, 0px);left:0;right:0;z-index:40;background:rgba(21,22,23,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-2);transform:translateY(-110%);transition:transform .22s var(--ease)}
 .mininav.show{transform:none}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:41;background:var(--bg)}
 .mininav .wrap{display:flex;align-items:center;gap:16px;padding-block:8px}
@@ -43,11 +43,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .mininav .home img{height:22px;width:auto}
 .mininav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0}
 .mininav ul::-webkit-scrollbar{display:none}
-.mininav a{display:flex;align-items:baseline;gap:6px;white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:13px;font-weight:500;padding:8px 12px;border-radius:999px;transition:background .14s var(--ease)}
-.mininav a small{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
-.mininav a:hover{background:var(--soft)}
-.mininav a[aria-current="true"]{background:var(--green);color:var(--ink)}
-.mininav a[aria-current="true"] small{color:var(--ink)}
+.mininav a{display:flex;align-items:baseline;gap:6px;white-space:nowrap;text-decoration:none;color:#FFFFFF;font-size:13px;font-weight:500;padding:8px 12px;border-radius:999px;transition:background .14s var(--ease)}
+.mininav a small{font-size:11px;color:var(--grey-dot);font-variant-numeric:tabular-nums}
+.mininav a:hover{background:rgba(255,255,255,.12)}
+.mininav a[aria-current="true"]{background:var(--green);color:#FFFFFF}
+.mininav a[aria-current="true"] small{color:#FFFFFF}
 /* Recursos */
 .dltools{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
 .seg{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:4px;gap:4px;background:var(--bg)}
@@ -89,6 +89,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
 .btn{cursor:pointer;font:inherit;font-weight:600;font-size:15px;padding:14px 24px;border-radius:999px;text-decoration:none;border:1px solid var(--ink);background:var(--bg);color:var(--ink);display:inline-flex;align-items:center;gap:8px}
 .btn.green{background:var(--green);border-color:var(--green)}
 .btn.green:hover{background:var(--green-dark);border-color:var(--green-dark);color:#FFFFFF}
+.btn.btn-dl{color:#FFFFFF;font-size:14px;padding:12px 22px}
 .bullets{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;line-height:1.5;color:var(--ink-2)}
 .bullets li{display:flex;gap:10px}
 .bullets li::before{content:"";flex:none;width:8px;height:8px;margin-top:7px;background:var(--ink);border-radius:50%}
@@ -180,7 +181,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <canvas class="dots-layer" id="heroDots" aria-hidden="true"></canvas>
 <nav class="mininav" id="miniNav" aria-label="Secciones del manual" aria-hidden="true">
   <div class="wrap">
-    <a class="home" href="#inicio" aria-label="Volver al inicio" tabindex="-1"><img src="img/simbolo-negro.png" alt=""></a>
+    <a class="home" href="#inicio" aria-label="Volver al inicio" tabindex="-1"><img src="img/simbolo-blanco.png" alt=""></a>
     <ul>
       <li><a href="#logotipo" tabindex="-1"><small>01</small>Logotipo</a></li>
       <li><a href="#recursos" tabindex="-1"><small>02</small>Recursos</a></li>
@@ -385,6 +386,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
           <span style="font-size:13px;color:var(--grey-dot);margin-top:8px">Mikro Black</span>
           <span class="specimen mikro" style="font-weight:900">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
         </div>
+        <a class="btn green btn-dl" href="#fuentes" style="align-self:flex-start;margin-top:auto">Descargar Mikro</a>
       </div>
       <div class="box">
         <div class="row" style="justify-content:space-between;align-items:baseline;gap:12px"><span class="eyebrow">Complementaria · moderna sans serif</span><a href="https://fonts.google.com/specimen/Poppins" style="font-size:13px;color:var(--ink)">Google Fonts</a></div>
@@ -397,6 +399,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
           <span style="font-size:13px;color:var(--mute);margin-top:8px">Poppins Bold</span>
           <span class="specimen" style="font-weight:700">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890@&amp;!?#$€%.</span>
         </div>
+        <a class="btn green btn-dl" href="#fuentes" style="align-self:flex-start;margin-top:auto">Descargar Poppins</a>
       </div>
     </div>
     <div class="box alt" style="border-radius:0 56px 0 56px">
@@ -412,7 +415,10 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
         <label class="field" for="typeSize" style="flex:1 1 220px"><span>Tamaño · <b id="sizeLbl">64 px</b></span><input type="range" id="typeSize" min="24" max="128" step="2" value="64"></label>
       </div>
       <div class="preview"><span id="typePrev" class="mikro" style="font-size:64px;font-weight:900">Somos la U. del emprendimiento sostenible.</span></div>
-      <span style="font-size:12px;color:var(--mute)">Mikro Bold y Mikro Black para titulares; Poppins para textos complementarios. <a href="#fuentes" style="color:var(--ink)">Descargar fuentes</a></span>
+      <div class="row" style="justify-content:space-between;align-items:center;gap:16px">
+        <span style="font-size:12px;color:var(--mute)">Poppins para titulares y textos complementarios.</span>
+        <a class="btn green btn-dl" href="#fuentes">Descargar fuentes</a>
+      </div>
     </div>
   </div>
 </section>
@@ -807,7 +813,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   renderGlobal();
   $('dlGridFonts').replaceChildren(...FONT_DL.map(f => {
     const msg = h('span', { class: 'dlmsg', 'aria-live': 'polite' });
-    const btn = h('button', { type: 'button', class: 'dlbtn', 'aria-label': 'Descargar fuente ' + f[1] + ' en ZIP', text: 'ZIP' });
+    const btn = h('button', { type: 'button', class: 'dlbtn', 'aria-label': 'Descargar fuente ' + f[1] + ' en ZIP', text: 'Descargar' });
     btn.addEventListener('click', () => doDownload('fuentes/' + f[0], msg, [btn], async () => {
       if (!window.JSZip) throw new Error('JSZip no disponible');
       const zip = new JSZip(); const dir = zip.folder(f[1]);
@@ -824,11 +830,13 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 
   /* ---------- Menú fijo ---------- */
   (function(){
-    const nav = $('miniNav'), idx = $('indexNav');
+    const nav = $('miniNav');
     const links = [...nav.querySelectorAll('a')];
     const setShown = on => { nav.classList.toggle('show', on); nav.setAttribute('aria-hidden', String(!on)); links.forEach(a => a.tabIndex = on ? 0 : -1); };
+    // Aparece con el primer desplazamiento y se oculta al volver arriba del todo
+    const onScroll = () => setShown(window.scrollY > 4);
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(es => { const e = es[0]; setShown(!e.isIntersecting && e.boundingClientRect.top < 0); }).observe(idx);
       const secs = ['logotipo', 'recursos', 'color', 'tipografia', 'composicion', 'meli', 'merch'].map(id => document.getElementById(id));
       const vis = new Map();
       const io = new IntersectionObserver(es => {
