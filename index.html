@@ -186,10 +186,10 @@ section.sec{border-top:1px solid var(--line);scroll-margin-top:56px}
 
 .aq-model{margin:0;font-size:clamp(34px,5vw,64px) !important;font-weight:800;letter-spacing:-.03em;line-height:1;color:#FFFFFF}
 .aq-model span{color:var(--green)}
-.aq-tabs{display:flex;flex-wrap:wrap;gap:8px;background:rgba(0,0,0,.18);padding:6px;border-radius:999px;align-self:flex-start;margin-top:-24px}
-.aqtab{cursor:pointer;font:inherit;font-size:15px;font-weight:600;border:0;border-radius:999px;padding:12px 22px;background:transparent;color:#FFFFFF;transition:background .14s var(--ease)}
-.aqtab:hover{background:rgba(255,255,255,.12)}
-.aqtab[aria-selected="true"]{background:#FFFFFF;color:#0033A3}
+.aq-tabs{display:flex;flex-wrap:wrap;gap:8px;background:#00ffb0;padding:6px;border-radius:999px;align-self:flex-start}
+.aqtab{cursor:pointer;font:inherit;font-size:15px;font-weight:600;border:0;border-radius:999px;padding:12px 22px;background:transparent;color:#0033A3;transition:background .14s var(--ease)}
+.aqtab:hover{background:rgba(255,255,255,.45)}
+.aqtab[aria-selected="true"]{background:#0033A3;color:#FFFFFF}
 .aqpanel{display:flex;flex-direction:column;gap:64px}
 .aq-ch img.ico{width:56px;height:56px;border-radius:50%;background:transparent;display:block;flex:none}
 /* Menú fijo compacto */
@@ -613,14 +613,9 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   <div class="wrap" style="gap:64px">
     <div class="sec-head">
       <div><h2>Arquetipo: tono, voz y rol por canal<span class="dot">.</span></h2></div>
-      <p>Cómo piensa, habla y se comporta la marca en el Nuevo Modelo Educativo EAN 2026, y qué papel cumple cada red social.</p>
+      <p>Cómo piensa, habla y se comporta la marca en el Nuevo Modelo Educativo EAN 2026, y qué rol cumple cada red social.</p>
     </div>
 
-    <div class="aq-tabs" role="tablist" aria-label="Arquetipo y redes">
-      <button type="button" class="aqtab" role="tab" data-a="a1" aria-selected="true">Arquetipo</button>
-      <button type="button" class="aqtab" role="tab" data-a="a2" aria-selected="false">Papel de cada red</button>
-    </div>
-    <div class="aqpanel" data-a="a1" role="tabpanel">
     <div class="aq-block">
       <h3 class="aq-model">Nuevo Modelo Educativo <span>EAN 2026</span></h3>
       <div class="aq-formula" role="img" aria-label="Emprendimiento sostenible por poder humano, elevado a Tech AI Maker, igual a abundancia para la humanidad">
@@ -637,6 +632,11 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       </div>
     </div>
 
+    <div class="aq-tabs" role="tablist" aria-label="Arquetipo y redes">
+      <button type="button" class="aqtab" role="tab" data-a="a1" aria-selected="true">Arquetipo</button>
+      <button type="button" class="aqtab" role="tab" data-a="a2" aria-selected="false">Rol de cada red</button>
+    </div>
+    <div class="aqpanel" data-a="a1" role="tabpanel">
     <div class="aq-block">
       <span class="eyebrow">Personalidad de la marca</span>
       <h3>Creador-héroe<span class="dot">.</span></h3>
@@ -668,7 +668,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     </div>
     <div class="aqpanel" data-a="a2" role="tabpanel" hidden>
     <div class="aq-block">
-      <h3>Papel de cada red<span class="dot">.</span></h3>
+      <h3>Rol de cada red<span class="dot">.</span></h3>
       <div class="aq-channels"><article class="aq-ch"><div class="top"><img class="ico" src="img/red-instagram.png" alt="Instagram"><div class="stack" style="gap:2px"><span class="net">Instagram</span><span class="name">La Revista del Emprendimiento Sostenible</span></div></div><dl><div><dt>Rol del canal</dt><dd>Nuestra revista insignia de emprendimiento. El activo digital que construye nuestra marca cultural y nos convierte en una fuente de consulta diaria para creadores e innovadores.</dd></div><div><dt>Personalidad de marca</dt><dd><span class="pers"><span>Aspiracional</span><span>Estética</span><span>Inteligente</span><span>De alto calibre</span></span><span class="spirit" style="display:block">Espíritu Forbes + Fast Company</span></dd></div></dl></article><article class="aq-ch"><div class="top"><img class="ico" src="img/red-youtube.png" alt="YouTube"><div class="stack" style="gap:2px"><span class="net">YouTube</span><span class="name">La Academia del Creador Sabio</span></div></div><dl><div><dt>Rol del canal</dt><dd>Nuestra biblioteca de conocimiento profundo y perenne. El lugar donde demostramos nuestra autoridad intelectual y entregamos herramientas prácticas de alto valor.</dd></div><div><dt>Personalidad de marca</dt><dd><span class="pers"><span>Educativa</span><span>Generosa</span><span>Rigurosa</span></span><span class="spirit" style="display:block">Espíritu Yoda y Q</span></dd></div></dl></article><article class="aq-ch"><div class="top"><img class="ico" src="img/red-tiktok.png" alt="TikTok"><div class="stack" style="gap:2px"><span class="net">TikTok</span><span class="name">El Laboratorio de la Cultura Liderado por la Tribu</span></div></div><dl><div><dt>Rol del canal</dt><dd>El pulso en tiempo real de la cultura Eanista. Es nuestro canal para demostrar el «vibe» de la marca de forma auténtica, entretenida y sin filtros, liderado por la propia comunidad.</dd></div><div><dt>Personalidad de marca</dt><dd><span class="pers"><span>Rápida</span><span>Auténtica</span><span>Ingeniosa</span><span>Juguetona</span></span><span class="spirit" style="display:block">Espíritu Shuri</span></dd></div></dl></article><article class="aq-ch"><div class="top"><img class="ico" src="img/red-linkedin.png" alt="LinkedIn"><div class="stack" style="gap:2px"><span class="net">LinkedIn</span><span class="name">El Hub de Inteligencia Profesional</span></div></div><dl><div><dt>Rol del canal</dt><dd>Nuestra plataforma para construir credibilidad y reputación como una fuerza seria en el futuro del trabajo y los negocios sostenibles.</dd></div><div><dt>Personalidad de marca</dt><dd><span class="pers"><span>Profesional</span><span>Basada en datos</span><span>Visionaria</span><span>Segura</span></span></dd></div></dl></article><article class="aq-ch"><div class="top"><img class="ico" src="img/red-facebook.png" alt="Facebook"><div class="stack" style="gap:2px"><span class="net">Facebook</span><span class="name">La Plaza Pública y el Puente Estratégico</span></div></div><dl><div><dt>Rol del canal</dt><dd>Nuestra plataforma para la comunicación pública a gran escala y el canal estratégico para conectar con audiencias clave como los padres de familia.</dd></div><div><dt>Personalidad de marca</dt><dd><span class="pers"><span>Informativa</span><span>Cálida</span><span>Comunitaria</span></span></dd></div></dl></article></div>
     </div>
     </div>
