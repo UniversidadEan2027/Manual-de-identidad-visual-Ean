@@ -528,7 +528,8 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
         <aside class="side box alt" style="padding:24px;gap:20px">
           <div class="detail-swatch" id="selSwatch"></div>
           <div class="stack" style="gap:4px"><span class="eyebrow" id="selPal"></span><span style="font-size:24px;font-weight:700" id="selName"></span></div>
-          <dl class="vals"><dt>HEX</dt><dd id="selHex"></dd><dt>RGB</dt><dd id="selRgb"></dd><dt>Texto</dt><dd id="selText"></dd></dl>
+          <dl class="vals"><dt>HEX</dt><dd id="selHex"></dd><dt>RGB</dt><dd id="selRgb"></dd><dt>CMYK</dt><dd id="selCmyk"></dd><dt>Texto</dt><dd id="selText"></dd></dl>
+          <p class="muted" style="margin:0;font-size:12px;line-height:1.5">CMYK convertido desde el HEX como referencia. Para impresión, valida con una prueba de color.</p>
           <button type="button" class="btn green" id="copyBtn" style="justify-content:center;font-size:15px"></button>
         </aside>
       </div>
@@ -956,6 +957,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
       { label: 'Negro', items: [['Negro V100','#14141e','10%',1],['Negro V75','#4f4f56'],['Negro V50','#89898e'],['Negro V25','#c4c4c7']] } ] }
   ];
   const rgb = hex => [0,2,4].map(i => parseInt(hex.slice(1).substr(i,2),16));
+  const cmyk = hex => { const [r,g,b] = rgb(hex).map(v => v/255); const k = 1 - Math.max(r,g,b); if (k >= 1) return [0,0,0,100]; return [r,g,b].map(v => Math.round((1-v-k)/(1-k)*100)).concat(Math.round(k*100)); };
   const lum = hex => { const c = rgb(hex).map(v => { v/=255; return v <= .03928 ? v/12.92 : Math.pow((v+.055)/1.055, 2.4); }); return .2126*c[0] + .7152*c[1] + .0722*c[2]; };
   const col = { pal: 'primarios', sel: { name: 'Verde Primario 100', hex: '#00bf68', pct: '30%' } };
   let copyT;
@@ -980,7 +982,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     const s = col.sel, L = lum(s.hex);
     $('selSwatch').style.background = s.hex; $('selSwatch').style.color = L > .4 ? '#151617' : '#FFFFFF'; $('selSwatch').textContent = s.pct || '';
     $('selPal').textContent = pal.label; $('selName').textContent = s.name;
-    $('selHex').textContent = s.hex.toUpperCase(); $('selRgb').textContent = rgb(s.hex).join(', ');
+    $('selHex').textContent = s.hex.toUpperCase(); $('selRgb').textContent = rgb(s.hex).join(', '); $('selCmyk').textContent = cmyk(s.hex).join(', ');
     const cW = 1.05/(L+.05), cB = (L+.05)/(lum('#151617')+.05);
     $('selText').textContent = cB >= cW ? 'Negro sobre este color (' + cB.toFixed(1) + ':1)' : 'Blanco sobre este color (' + cW.toFixed(1) + ':1)';
     $('copyBtn').textContent = 'Copiar ' + s.hex.toUpperCase();
