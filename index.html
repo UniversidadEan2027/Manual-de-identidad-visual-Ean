@@ -119,6 +119,12 @@ section.sec{border-top:1px solid var(--line);scroll-margin-top:56px}
 .fz-legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px;color:var(--ink-2)}
 .fz-legend span{display:flex;align-items:center;gap:8px}
 .fz-legend i{width:16px;height:16px;border-radius:4px;display:block}
+
+/* Recursos: guía de formatos */
+.fmtnote{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px;margin-top:-16px}
+.fmtnote div{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:18px 0 18px 0;padding:14px 16px}
+.fmtnote b{flex:none;background:var(--ink);color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:.04em;padding:4px 9px;border-radius:999px;margin-top:1px}
+.fmtnote span{font-size:14px;line-height:1.5;color:var(--ink-2)}
 /* Menú fijo compacto */
 .mininav{position:fixed;top:env(safe-area-inset-top, 0px);left:0;right:0;z-index:40;background:rgba(21,22,23,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--ink-2);transform:translateY(-110%);transition:transform .22s var(--ease)}
 .mininav.show{transform:none}
@@ -268,14 +274,14 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
   <div class="wrap">
     <a class="home" href="#inicio" aria-label="Volver al inicio" tabindex="-1"><img src="img/simbolo-blanco.png" alt=""></a>
     <ul>
-      <li><a href="#logotipo" tabindex="-1"><small>01</small>Logotipo</a></li>
-      <li><a href="#recursos" tabindex="-1"><small>02</small>Recursos</a></li>
-      <li><a href="#color" tabindex="-1"><small>03</small>Color</a></li>
-      <li><a href="#tipografia" tabindex="-1"><small>04</small>Tipografía</a></li>
-      <li><a href="#composicion" tabindex="-1"><small>05</small>Composición</a></li>
-      <li><a href="#guia" tabindex="-1"><small>06</small>Guía</a></li>
-      <li><a href="#meli" tabindex="-1"><small>07</small>Meli</a></li>
-      <li><a href="#merch" tabindex="-1"><small>08</small>Merch</a></li>
+      <li><a href="#logotipo" tabindex="-1">Logotipo</a></li>
+      <li><a href="#recursos" tabindex="-1">Recursos</a></li>
+      <li><a href="#color" tabindex="-1">Color</a></li>
+      <li><a href="#tipografia" tabindex="-1">Tipografía</a></li>
+      <li><a href="#composicion" tabindex="-1">Composición</a></li>
+      <li><a href="#guia" tabindex="-1">Guía</a></li>
+      <li><a href="#meli" tabindex="-1">Meli</a></li>
+      <li><a href="#merch" tabindex="-1">Merch</a></li>
     </ul>
   </div>
 </nav>
@@ -300,14 +306,14 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
     </div>
 
     <nav class="index" id="indexNav" aria-label="Índice del manual">
-      <a class="idx" href="#logotipo"><span class="n">01</span><span class="t">Logotipo<span class="dot">.</span></span><span class="d">Estructura, usos incorrectos, procesos, co-branding, acreditación</span></a>
-      <a class="idx" href="#recursos"><span class="n">02</span><span class="t">Recursos<span class="dot">.</span></span><span class="d">Logos, subprocesos y fuentes para descargar</span></a>
-      <a class="idx" href="#color"><span class="n">03</span><span class="t">Color<span class="dot">.</span></span><span class="d">Primarios, extensiones y Ean Virtual</span></a>
-      <a class="idx" href="#tipografia"><span class="n">04</span><span class="t">Tipografía<span class="dot">.</span></span><span class="d">Mikro y Poppins</span></a>
-      <a class="idx" href="#composicion"><span class="n">05</span><span class="t">Composición<span class="dot">.</span></span><span class="d">Retícula 1:1 y 16:9</span></a>
-      <a class="idx" href="#guia"><span class="n">06</span><span class="t">Guía de contenido<span class="dot">.</span></span><span class="d">Cubrimiento de eventos con el celular</span></a>
-      <a class="idx" href="#meli"><span class="n">07</span><span class="t">Meli<span class="dot">.</span></span><span class="d">Construcción, versiones, stickers, Meli 3D y Meli Virtual</span></a>
-      <a class="idx" href="#merch"><span class="n">08</span><span class="t">Merch<span class="dot">.</span></span><span class="d">Agendas, accesorios y ropa</span></a>
+      <a class="idx" href="#logotipo"><span class="t">Logotipo<span class="dot">.</span></span><span class="d">Estructura, usos incorrectos, procesos, co-branding, acreditación</span></a>
+      <a class="idx" href="#recursos"><span class="t">Recursos<span class="dot">.</span></span><span class="d">Logos, subprocesos y fuentes para descargar</span></a>
+      <a class="idx" href="#color"><span class="t">Color<span class="dot">.</span></span><span class="d">Primarios, extensiones y Ean Virtual</span></a>
+      <a class="idx" href="#tipografia"><span class="t">Tipografía<span class="dot">.</span></span><span class="d">Mikro y Poppins</span></a>
+      <a class="idx" href="#composicion"><span class="t">Composición<span class="dot">.</span></span><span class="d">Retícula 1:1 y 16:9</span></a>
+      <a class="idx" href="#guia"><span class="t">Guía de contenido<span class="dot">.</span></span><span class="d">Cubrimiento de eventos con el celular</span></a>
+      <a class="idx" href="#meli"><span class="t">Meli<span class="dot">.</span></span><span class="d">Construcción, versiones, stickers, Meli 3D y Meli Virtual</span></a>
+      <a class="idx" href="#merch"><span class="t">Merch<span class="dot">.</span></span><span class="d">Agendas, accesorios y ropa</span></a>
     </nav>
   </div>
 </header>
@@ -316,7 +322,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="logotipo" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">01</span><h2>Logotipo<span class="dot">.</span></h2></div>
+      <div><h2>Logotipo<span class="dot">.</span></h2></div>
       <p>El logosímbolo une el símbolo de puntos, construido sobre una retícula hexagonal, con la palabra ean y el descriptor universidad. Se usa en positivo o en negativo, siempre completo y sin alteraciones.</p>
     </div>
 
@@ -399,8 +405,13 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="recursos" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">02</span><h2>Recursos<span class="dot">.</span></h2></div>
+      <div><h2>Recursos<span class="dot">.</span></h2></div>
       <p>Descarga las versiones oficiales del logo, los subprocesos y las fuentes. PNG con fondo transparente en alta resolución para digital; SVG y PDF vectoriales para impresión y diseño.</p>
+    </div>
+    <div class="fmtnote" aria-label="Qué formato usar">
+      <div><b>PNG</b><span>Fondo transparente, listo para piezas digitales y presentaciones.</span></div>
+      <div><b>SVG</b><span>Vectorial y liviano: ideal para web, nítido a cualquier tamaño.</span></div>
+      <div><b>PDF</b><span>Alta resolución, el archivo indicado para impresión.</span></div>
     </div>
     <div class="box" style="border-radius:56px 0 56px 0;gap:36px">
       <div class="dltools">
@@ -425,7 +436,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="color" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">03</span><h2>Color<span class="dot">.</span></h2></div>
+      <div><h2>Color<span class="dot">.</span></h2></div>
       <p>Busca el equilibrio visual armonioso: 60 % color dominante (fondos y secciones), 30 % secundario (cuerpo de textos y acentos) y 10 % acento (titulares, CTA e iconos). Esta fórmula garantiza contraste y evita espacios sobrecargados.</p>
     </div>
     <div class="stack" style="gap:12px">
@@ -460,7 +471,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="tipografia" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">04</span><h2>Tipografía<span class="dot">.</span></h2></div>
+      <div><h2>Tipografía<span class="dot">.</span></h2></div>
       <p>Mikro es una sans serif que refleja la cercanía, solidez, empatía y modernidad de nuestra marca. La usamos de manera consistente en presentaciones, comunicaciones y piezas gráficas. Poppins es la fuente complementaria.</p>
     </div>
     <div class="grid g2">
@@ -514,7 +525,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="composicion" class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <div><span class="sec-num">05</span><h2>Composición<span class="dot">.</span></h2></div>
+      <div><h2>Composición<span class="dot">.</span></h2></div>
       <p>La composición es la organización estratégica de elementos visuales dentro de un espacio, para transmitir un mensaje claro y generar una experiencia visual efectiva: imágenes, texto, color y tipografía dispuestos para lograr el impacto deseado.</p>
     </div>
     <div class="rules">
@@ -534,50 +545,50 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="guia" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">06</span><h2>Guía de creación de contenido<span class="dot">.</span></h2></div>
+      <div><h2>Guía de creación de contenido<span class="dot">.</span></h2></div>
       <p>Cubrimiento de eventos en canales digitales: guía práctica para grabar historias, entrevistas, recap y fotos con tu celular.</p>
     </div>
     <div class="guide">
       <nav class="guide-nav" aria-label="Temas de la guía">
         <span class="gtitle">Contenido</span>
-          <button type="button" class="gitem" data-g="g01" aria-pressed="true"><small>01</small>Para qué sirve</button>
-          <button type="button" class="gitem" data-g="g02" aria-pressed="false"><small>02</small>Antes del evento</button>
-          <button type="button" class="gitem" data-g="g03" aria-pressed="false"><small>03</small>Historias</button>
-          <button type="button" class="gitem" data-g="g04" aria-pressed="false"><small>04</small>Entrevistas</button>
-          <button type="button" class="gitem" data-g="g05" aria-pressed="false"><small>05</small>Formatos y zonas seguras</button>
-          <button type="button" class="gitem" data-g="g06" aria-pressed="false"><small>06</small>Material recap</button>
-          <button type="button" class="gitem" data-g="g07" aria-pressed="false"><small>07</small>Fotos clave</button>
-          <button type="button" class="gitem" data-g="g08" aria-pressed="false"><small>08</small>Préstamo de equipos</button>
-          <button type="button" class="gitem" data-g="g09" aria-pressed="false"><small>09</small>Buenas prácticas</button>
-          <button type="button" class="gitem" data-g="g10" aria-pressed="false"><small>10</small>Entrega del material</button>
+          <button type="button" class="gitem" data-g="g01" aria-pressed="true">Para qué sirve</button>
+          <button type="button" class="gitem" data-g="g02" aria-pressed="false">Antes del evento</button>
+          <button type="button" class="gitem" data-g="g03" aria-pressed="false">Historias</button>
+          <button type="button" class="gitem" data-g="g04" aria-pressed="false">Entrevistas</button>
+          <button type="button" class="gitem" data-g="g05" aria-pressed="false">Formatos y zonas seguras</button>
+          <button type="button" class="gitem" data-g="g06" aria-pressed="false">Material recap</button>
+          <button type="button" class="gitem" data-g="g07" aria-pressed="false">Fotos clave</button>
+          <button type="button" class="gitem" data-g="g08" aria-pressed="false">Préstamo de equipos</button>
+          <button type="button" class="gitem" data-g="g09" aria-pressed="false">Buenas prácticas</button>
+          <button type="button" class="gitem" data-g="g10" aria-pressed="false">Entrega del material</button>
       </nav>
       <div class="guide-body">
         <section class="gpanel" data-g="g01" aria-label="Para qué sirve">
-          <div class="gh"><span class="eyebrow">01 · Para qué sirve</span><h3>Un mínimo común de calidad para todas las áreas<span class="dot">.</span></h3><p>Registra tu evento y comparte el material con el equipo de Contenido (Alfonso Moreno y Jhonnatan García). Basta con un celular.</p></div>
+          <div class="gh"><span class="eyebrow">Para qué sirve</span><h3>Un mínimo común de calidad para todas las áreas<span class="dot">.</span></h3><p>Registra tu evento y comparte el material con el equipo de Contenido (Alfonso Moreno y Jhonnatan García). Basta con un celular.</p></div>
           <div class="gcards"><div class="gcard"><b>Formato correcto</b><ul><li>Vertical 9:16: historias y reels.</li><li>Horizontal 16:9: pantallas, YouTube y recaps.</li></ul></div><div class="gcard"><b>Cuida el audio</b><span>En entrevistas pesa tanto como la imagen.</span></div><div class="gcard"><b>Lo humano conecta</b><span>Personas y reacciones; evita gente distraída o en el celular.</span></div></div>
         </section>
         <section class="gpanel" data-g="g02" aria-label="Antes del evento" hidden>
-          <div class="gh"><span class="eyebrow">02 · Antes del evento</span><h3>Prepárate en 5 minutos<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Antes del evento</span><h3>Prepárate en 5 minutos<span class="dot">.</span></h3></div>
           <div class="gcards"><div class="gcard"><b>Checklist</b><ul><li>Batería y memoria suficientes.</li><li>Lente limpio con un paño suave.</li><li>Momentos clave identificados: apertura, ponentes, premiación, cierre.</li><li>Micrófono o luces pedidos con 3 días hábiles (ver Préstamo de equipos).</li><li>Coordina con quien más cubra para no repetir tomas.</li></ul></div></div>
         </section>
         <section class="gpanel" data-g="g03" aria-label="Historias" hidden>
-          <div class="gh"><span class="eyebrow">03 · Historias</span><h3>Ambiente y detrás de cámaras<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Historias</span><h3>Ambiente y detrás de cámaras<span class="dot">.</span></h3></div>
           <div class="gcards"><div class="gcard"><b>Cómo grabar</b><ul><li>Vertical y clips de 5–15 s.</li><li>Movimientos lentos; codos apoyados.</li><li>Luz de frente, nunca a contraluz.</li></ul></div><div class="gcard"><b>Qué grabar</b><ul><li>Ambiente: llegada, montaje, marca Ean visible.</li><li>Reacciones: aplausos, risas, conversaciones.</li></ul></div></div>
           <div class="gnote">Graba 2–3 s de más al inicio y al final de cada toma.</div>
         </section>
         <section class="gpanel" data-g="g04" aria-label="Entrevistas" hidden>
-          <div class="gh"><span class="eyebrow">04 · Entrevistas</span><h3>Encuadre, audio y luz<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Entrevistas</span><h3>Encuadre, audio y luz<span class="dot">.</span></h3></div>
           <div class="gcards"><div class="gcard"><b>Encuadre</b><ul><li>Ojos en el tercio superior.</li><li>Mirada al entrevistador, no al lente.</li><li>Fondo limpio con identidad Ean.</li></ul></div><div class="gcard"><b>Audio</b><ul><li>Lugar silencioso, sin eco.</li><li>Micrófono encendido, cerca del pecho.</li><li>Prueba de 5 s antes de grabar.</li></ul></div><div class="gcard"><b>Luz</b><ul><li>De frente o de lado.</li><li>Nunca detrás de la persona.</li><li>Luz de préstamo: a la altura de los ojos.</li></ul></div></div>
           <div class="gnote dark"><b>Evita el ruido:</b> aléjate de parlantes, puertas, ventanas y zonas de paso; si hay música o conversaciones cerca, pide amablemente bajar el volumen o unos minutos de silencio.</div>
         </section>
         <section class="gpanel" data-g="g05" aria-label="Formatos y zonas seguras" hidden>
-          <div class="gh"><span class="eyebrow">05 · Formatos y zonas seguras</span><h3>Formatos y zonas seguras para redes sociales<span class="dot">.</span></h3><p>Hoja de referencia rápida para diseñar y grabar. Las medidas de cada zona están marcadas en el visual.</p></div>
+          <div class="gh"><span class="eyebrow">Formatos y zonas seguras</span><h3>Formatos y zonas seguras para redes sociales<span class="dot">.</span></h3><p>Hoja de referencia rápida para diseñar y grabar. Las medidas de cada zona están marcadas en el visual.</p></div>
           <div class="fz-legend"><span><i style="background:#f3c7cb"></i>Interfaz / recorte en perfil</span><span><i style="background:#d7d1f6"></i>Botones de acción</span><span><i style="background:#F2F2F2;outline:3px solid #00bf68;outline-offset:-3px"></i>Zona segura</span></div>
           <div class="fzgrid"><div class="fzcard"><div class="fz-head"><b>1080 × 1920</b><span class="fz-ratio">9:16</span></div><div class="fz-visual"><svg class="fz-svg" viewBox="-6 -6 1092 1932" role="img" aria-label="Formato 9:16, 1080 por 1920 píxeles, con zona segura de 875 por 980" style="max-height:480px"><rect x="0" y="0" width="1080" height="1920" rx="18" fill="#FFFFFF" stroke="#151617" stroke-width="4"/><rect x="0" y="0" width="1080" height="270" fill="#f3c7cb"/><rect x="0" y="1250" width="1080" height="670" fill="#f3c7cb"/><rect x="940" y="270" width="140" height="980" fill="#d7d1f6"/><rect x="65" y="270" width="875" height="980" fill="#F2F2F2" stroke="#00bf68" stroke-width="8"/><text x="502.5" y="712.0" font-size="60" font-weight="600" fill="#008f4e" text-anchor="middle" dominant-baseline="middle">ZONA SEGURA</text><text x="502.5" y="808.0" font-size="54.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">875 × 980 px</text><text x="540" y="135" font-size="60" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">270 px · interfaz superior</text><text x="540" y="1585" font-size="60" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">670 px · caption e interfaz</text><text x="32" y="760" font-size="54.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 32 760)">65</text><text x="1010" y="760" font-size="54.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 1010 760)">140 px · botones</text></svg></div><div class="fz-info"><span class="eyebrow">Uso principal</span><span>Stories, Reels, TikTok y YouTube Shorts.</span><span class="eyebrow" style="margin-top:6px">Claves de diseño</span><ul><li>Una sola pieza sirve para las 4 plataformas si respeta la zona universal.</li><li>Tercio inferior y columna derecha libres: ahí van caption, CTA e íconos.</li><li>Solo Stories admite zona amplia: 250 px arriba y 340 px abajo.</li></ul></div></div><div class="fzcard"><div class="fz-head"><b>1080 × 1350</b><span class="fz-ratio">4:5</span></div><div class="fz-visual"><svg class="fz-svg" viewBox="-6 -6 1092 1362" role="img" aria-label="Formato 4:5, 1080 por 1350 píxeles, con zona segura de 960 por 960" style="max-height:480px"><rect x="0" y="0" width="1080" height="1350" rx="18" fill="#FFFFFF" stroke="#151617" stroke-width="4"/><rect x="0" y="0" width="34" height="1350" fill="#f3c7cb"/><rect x="1046" y="0" width="34" height="1350" fill="#f3c7cb"/><rect x="60" y="60" width="960" height="1230" fill="#F2F2F2" stroke="#00bf68" stroke-width="8"/><text x="540.0" y="627.0" font-size="60" font-weight="600" fill="#008f4e" text-anchor="middle" dominant-baseline="middle">ZONA SEGURA</text><text x="540.0" y="723.0" font-size="54.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">960 × 1230 px</text><text x="540" y="30" font-size="48.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">60 px</text><text x="540" y="1320" font-size="48.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">60 px</text><text x="130" y="675" font-size="45.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 130 675)">60 px · 34 perfil</text><text x="950" y="675" font-size="45.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 950 675)">60 px · 34 perfil</text></svg></div><div class="fz-info"><span class="eyebrow">Uso principal</span><span>Feed de Instagram y Facebook. Formato recomendado para pauta.</span><span class="eyebrow" style="margin-top:6px">Claves de diseño</span><ul><li>Es el que más pantalla ocupa en el feed móvil.</li><li>Logos y textos a 60 px del borde.</li><li>En carrusel, todas las láminas con el mismo ratio.</li></ul></div></div><div class="fzcard"><div class="fz-head"><b>1080 × 1080</b><span class="fz-ratio">1:1</span></div><div class="fz-visual"><svg class="fz-svg" viewBox="-6 -6 1092 1092" role="img" aria-label="Formato 1:1, 1080 por 1080 píxeles, con zona segura de 960 por 960" style="max-height:340px"><rect x="0" y="0" width="1080" height="1080" rx="18" fill="#FFFFFF" stroke="#151617" stroke-width="4"/><rect x="0" y="0" width="135" height="1080" fill="#f3c7cb"/><rect x="945" y="0" width="135" height="1080" fill="#f3c7cb"/><rect x="60" y="60" width="960" height="960" fill="#F2F2F2" stroke="#00bf68" stroke-width="8"/><text x="540.0" y="492.0" font-size="60" font-weight="600" fill="#008f4e" text-anchor="middle" dominant-baseline="middle">ZONA SEGURA</text><text x="540.0" y="588.0" font-size="54.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">960 × 960 px</text><rect x="135" y="60" width="810" height="960" fill="none" stroke="#151617" stroke-width="4" stroke-dasharray="18 14"/><text x="540" y="30" font-size="48.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">60 px</text><text x="540" y="1050" font-size="48.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">60 px</text><text x="98" y="540" font-size="45.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 98 540)">135 px · recorte perfil</text><text x="982" y="540" font-size="45.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 982 540)">135 px · recorte perfil</text><text x="540" y="140" font-size="48.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">810 px centrales · lo clave</text></svg></div><div class="fz-info"><span class="eyebrow">Uso principal</span><span>Feed, carruseles, LinkedIn y catálogo.</span><span class="eyebrow" style="margin-top:6px">Claves de diseño</span><ul><li>En el perfil de Instagram se recortan 135 px por lado.</li><li>Titular y elemento principal en el centro.</li><li>El más compatible entre plataformas.</li></ul></div></div><div class="fzcard"><div class="fz-head"><b>1080 × 566</b><span class="fz-ratio">1.91:1</span></div><div class="fz-visual"><svg class="fz-svg" viewBox="-6 -6 1092 578" role="img" aria-label="Formato 1.91:1, 1080 por 566 píxeles, con zona segura de 990 por 476" style="max-height:340px"><rect x="0" y="0" width="1080" height="566" rx="18" fill="#FFFFFF" stroke="#151617" stroke-width="4"/><rect x="0" y="0" width="257" height="566" fill="#f3c7cb"/><rect x="823" y="0" width="257" height="566" fill="#f3c7cb"/><rect x="45" y="45" width="990" height="476" fill="#F2F2F2" stroke="#00bf68" stroke-width="8"/><text x="540.0" y="239.8" font-size="54.0" font-weight="600" fill="#008f4e" text-anchor="middle" dominant-baseline="middle">ZONA SEGURA</text><text x="540.0" y="326.2" font-size="48.6" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">990 × 476 px</text><text x="540" y="22" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">45 px</text><text x="540" y="544" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">45 px</text><text x="22" y="283" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 22 283)">45</text><text x="1058" y="283" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle" transform="rotate(90 1058 283)">45</text><text x="128" y="120" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">recorte</text><text x="128" y="160" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">perfil</text><text x="952" y="120" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">recorte</text><text x="952" y="160" font-size="36.0" font-weight="600" fill="#151617" text-anchor="middle" dominant-baseline="middle">perfil</text></svg></div><div class="fz-info"><span class="eyebrow">Uso principal</span><span>Anuncios y publicaciones con enlace en Facebook, LinkedIn y X.</span><span class="eyebrow" style="margin-top:6px">Claves de diseño</span><ul><li>Texto corto y grande; nada de párrafos ni tipografías delgadas.</li><li>Ocupa poca altura en móvil.</li><li>Para Instagram, crear versión 4:5.</li></ul></div></div></div>
           <div class="gnote">Valida con la vista previa nativa de cada red antes de publicar.</div>
         </section>
         <section class="gpanel" data-g="g06" aria-label="Material recap" hidden>
-          <div class="gh"><span class="eyebrow">06 · Material recap</span><h3>El resumen del evento en pocos segundos<span class="dot">.</span></h3><p>Necesitamos variedad de tomas cortas (5–10 s, estables, verticales) que el equipo edita. Graba estos tres tipos de plano por cada momento clave:</p></div>
+          <div class="gh"><span class="eyebrow">Material recap</span><h3>El resumen del evento en pocos segundos<span class="dot">.</span></h3><p>Necesitamos variedad de tomas cortas (5–10 s, estables, verticales) que el equipo edita. Graba estos tres tipos de plano por cada momento clave:</p></div>
           <div class="recap">
             <div class="recap-eq">
               <div class="recap-planes">
@@ -595,7 +606,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
           </div>
         </section>
         <section class="gpanel" data-g="g07" aria-label="Fotos clave" hidden>
-          <div class="gh"><span class="eyebrow">07 · Fotos de momentos clave</span><h3>Para carruseles y álbumes, de lo que mejor funciona<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Fotos de momentos clave</span><h3>Para carruseles y álbumes, de lo que mejor funciona<span class="dot">.</span></h3></div>
           <div class="gcards">
             <div class="gcard"><div class="ghead"><span class="gicon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></svg></span><b>Qué fotografiar</b></div><ul><li>La apertura y el ambiente general.</li><li>Ponentes e invitados principales en acción.</li><li>El público: reacciones y participación.</li><li>Interacción: premiaciones, saludos, comunidad.</li><li>Detalles de marca: pendones, pantallas, identidad Ean.</li></ul></div>
             <div class="gcard"><div class="ghead"><span class="gicon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.2L12 17.4 6.4 20.3l1.1-6.2L3 9.7l6.2-.9z"/></svg></span><b>Cómo tomarlas</b></div><ul><li>Cada momento en horizontal y en vertical.</li><li>Toca la pantalla sobre la persona para enfocar.</li><li>Pulso firme y varias fotos del mismo momento.</li><li>Acércate caminando, sin zoom digital.</li><li>Prioriza siempre lo humano sobre objetos vacíos.</li></ul></div>
@@ -608,17 +619,17 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
           </div>
         </section>
         <section class="gpanel" data-g="g08" aria-label="Préstamo de equipos" hidden>
-          <div class="gh"><span class="eyebrow">08 · Préstamo de equipos</span><h3>Micrófonos y luces: mínimo 3 días hábiles antes<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Préstamo de equipos</span><h3>Micrófonos y luces: mínimo 3 días hábiles antes<span class="dot">.</span></h3></div>
           <div class="gbig"><span class="num">3<small>días hábiles de anticipación</small></span></div>
           <div class="gsteps"><div class="gstep"><span class="n">1</span><b>Escribe a Contenido</b><span>Fecha, hora y lugar.</span></div><div class="gstep"><span class="n">2</span><b>Indica qué necesitas</b><span>Equipos y n.º de entrevistas.</span></div><div class="gstep"><span class="n">3</span><b>Confirma responsable</b><span>Quién recibe y devuelve.</span></div></div>
           <div class="gnote">No se atienden solicitudes el mismo día. Los equipos se devuelven en igual estado y en la fecha acordada.</div>
         </section>
         <section class="gpanel" data-g="g09" aria-label="Buenas prácticas" hidden>
-          <div class="gh"><span class="eyebrow">09 · Buenas prácticas</span><h3>Sí hacer / Evitar<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Buenas prácticas</span><h3>Sí hacer / Evitar<span class="dot">.</span></h3></div>
           <div class="dodont"><div class="col yes"><span class="hd"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#151617" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></i>Sí hacer</span><ul><li>Formato según canal: vertical o horizontal.</li><li>Audio limpio y con micrófono.</li><li>Personas y comunidad primero.</li><li>Clips cortos y estables; fotos además de video.</li></ul></div><div class="col no"><span class="hd"><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Evitar</span><ul><li>Zoom digital, contraluz u oscuridad.</li><li>Clips eternos o movimientos bruscos.</li><li>Lente sucio o dedos sobre la cámara.</li><li>Mencionar precios en video.</li></ul></div></div>
         </section>
         <section class="gpanel" data-g="g10" aria-label="Entrega del material" hidden>
-          <div class="gh"><span class="eyebrow">10 · Entrega del material</span><h3>Rápido, ordenado y original<span class="dot">.</span></h3></div>
+          <div class="gh"><span class="eyebrow">Entrega del material</span><h3>Rápido, ordenado y original<span class="dot">.</span></h3></div>
           <div class="gcards"><div class="gcard"><b>Originales</b><span>Sin comprimir ni recortar.</span></div><div class="gcard"><b>Pronto</b><span>La inmediatez es clave.</span></div><div class="gcard"><b>Identificado</b><span>Evento, fecha y facultad.</span></div><div class="gcard"><b>Favoritas</b><span>Marca la mejor toma.</span></div></div>
           <div class="gtable"><table><thead><tr><th>Elemento</th><th>Formato</th><th>Ejemplo</th></tr></thead><tbody><tr><td>Carpeta</td><td><code>[AAAA-MM-DD] Nombre del evento</code></td><td><code>[2026-09-12] Expo Proyectos</code></td></tr><tr><td>Archivos</td><td><code>AAAA-MM-DD_Facultad_Evento_###</code></td><td><code>2026-09-12_Ingenieria_ExpoProyectos_001</code></td></tr></tbody></table></div>
           <div class="gcards"><div class="gcard"><b>Antes de entregar, verifica</b><ul><li>Carpeta en la facultad correcta.</li><li>Subcarpetas Fotos, Videos y Sesión completa.</li><li>Archivos originales y de calidad.</li></ul></div><div class="gcard"><b>Pide acceso a la carpeta</b><span>Escribe a:</span><span class="gmail">jhstgarcia@universidadean.edu.co</span><span class="gmail">ajmoreno@universidadean.edu.co</span></div></div>
@@ -633,7 +644,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="meli" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">07</span><h2>Meli<span class="dot">.</span></h2></div>
+      <div><h2>Meli<span class="dot">.</span></h2></div>
       <p>Nuestra mascota. Respeta su construcción y proporciones, y usa solo las versiones, stickers y modelos aprobados.</p>
     </div>
     <div class="row" role="tablist" aria-label="Meli" id="meliTabs"></div>
@@ -646,7 +657,7 @@ footer.foot .legal{border-top:1px solid var(--ink-3);padding-top:24px;display:fl
 <section id="merch" class="sec">
   <div class="wrap" style="gap:40px">
     <div class="sec-head">
-      <div><span class="sec-num">08</span><h2>Merch<span class="dot">.</span></h2></div>
+      <div><h2>Merch<span class="dot">.</span></h2></div>
       <p>Aplicaciones de la marca en agendas, accesorios y ropa: referencias de estilo para producir piezas coherentes con la identidad.</p>
     </div>
     <div class="row" role="tablist" aria-label="Merch" id="merchTabs"></div>
